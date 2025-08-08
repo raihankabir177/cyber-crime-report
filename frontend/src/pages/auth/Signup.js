@@ -59,11 +59,11 @@ export default function Signup() {
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(135deg, #142B4A 0%, #1b4260 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Paper elevation={4} sx={{ p: { xs: 2, sm: 4 }, borderRadius: 4, maxWidth: 400, width: '100%' }}>
         <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
           <Box sx={{ background: '#c6f6d5', borderRadius: '50%', p: 2, mb: 1 }}>
-            <PersonAddAltIcon sx={{ color: '#319795', fontSize: 40 }} />
+            <PersonAddAltIcon sx={{ color: '#174a5b', fontSize: 40 }} />
           </Box>
           <Typography variant="h5" fontWeight={700} mb={0.5}>Create Account</Typography>
           <Typography color="text.secondary" fontSize={15} mb={1}>Join our cyber crime reporting system</Typography>
@@ -79,7 +79,7 @@ export default function Signup() {
             fullWidth
             margin="normal"
             required
-            InputProps={{ startAdornment: <InputAdornment position="start"><PersonIcon sx={{ color: '#319795' }} /></InputAdornment> }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><PersonIcon sx={{ color: '#174a5b' }} /></InputAdornment> }}
           />
           <TextField
             label="Email Address"
@@ -89,7 +89,7 @@ export default function Signup() {
             fullWidth
             margin="normal"
             required
-            InputProps={{ startAdornment: <InputAdornment position="start"><EmailIcon sx={{ color: '#319795' }} /></InputAdornment> }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><EmailIcon sx={{ color: '#174a5b' }} /></InputAdornment> }}
           />
           <TextField
             label="Phone Number"
@@ -99,7 +99,7 @@ export default function Signup() {
             fullWidth
             margin="normal"
             placeholder="123-456-7890"
-            InputProps={{ startAdornment: <InputAdornment position="start"><PhoneIcon sx={{ color: '#319795' }} /></InputAdornment> }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><PhoneIcon sx={{ color: '#174a5b' }} /></InputAdornment> }}
           />
           <TextField
             select
@@ -125,7 +125,7 @@ export default function Signup() {
             margin="normal"
             required
             InputProps={{
-              startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#2563eb' }} /></InputAdornment>,
+              startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#256D85' }} /></InputAdornment>,
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={() => setShowPassword((show) => !show)} edge="end">
@@ -145,7 +145,7 @@ export default function Signup() {
             margin="normal"
             required
             InputProps={{
-              startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#2563eb' }} /></InputAdornment>,
+              startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#256D85' }} /></InputAdornment>,
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={() => setShowConfirm((show) => !show)} edge="end">
@@ -159,14 +159,14 @@ export default function Signup() {
             type="submit"
             variant="contained"
             fullWidth
-            sx={{ mt: 2, mb: 1, background: 'linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)', color: '#222', fontWeight: 700, fontSize: 17, boxShadow: 'none' }}
+            sx={{ mt: 2, mb: 1, background: 'linear-gradient(90deg, #256D85 0%, #3b8ea5 100%)', color: '#222', fontWeight: 700, fontSize: 17, boxShadow: 'none' }}
           >
             Create Account
           </Button>
         </form>
         <Typography align="center" mt={1} color="text.secondary" fontSize={15}>
           Already have an account?{' '}
-          <span style={{ color: '#2563eb', cursor: 'pointer', fontWeight: 600 }} onClick={() => navigate('/auth/login')}>Sign in here</span>
+          <span style={{ color: '#256D85', cursor: 'pointer', fontWeight: 600 }} onClick={() => navigate('/auth/login')}>Sign in here</span>
         </Typography>
       </Paper>
     </Box>

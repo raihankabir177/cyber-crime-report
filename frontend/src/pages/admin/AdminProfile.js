@@ -15,7 +15,6 @@ import {
   IconButton,
   Chip
 } from "@mui/material";
-import AdminSidebar from "../../components/AdminSidebar";
 import { useSessionStorage } from "../../utils/useSessionStorage";
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
@@ -106,9 +105,8 @@ export default function AdminProfile() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <AdminSidebar />
-      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
@@ -249,8 +247,8 @@ export default function AdminProfile() {
                   sx={{
                     width: 120,
                     height: 120,
-                    bgcolor: '#4fd1c5',
-                    color: '#282c34',
+                    bgcolor: '#256D85',
+                    color: '#142B4A',
                     fontSize: '3rem',
                     margin: '0 auto 2rem'
                   }}

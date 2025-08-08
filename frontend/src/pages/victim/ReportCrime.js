@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import {
   Box, Typography, TextField, Button, MenuItem, Alert, GridLegacy as Grid, Paper, InputAdornment, IconButton
 } from "@mui/material";
-import Sidebar from "../../components/Sidebar";
 import DescriptionIcon from '@mui/icons-material/Description';
 import EventIcon from '@mui/icons-material/Event';
 import PlaceIcon from '@mui/icons-material/Place';
@@ -105,13 +104,12 @@ export default function ReportCrime() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <Sidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Box maxWidth={700} mx="auto">
-        <Typography variant="h4" fontWeight={700} mb={1}>Report a Crime</Typography>
-        <Typography color="text.secondary" mb={3}>Provide detailed information about the cybercrime incident</Typography>
+        <Typography variant="h4" fontWeight={700} mb={1} color="white">Report a Crime</Typography>
+        <Typography color="white" mb={3}>Provide detailed information about the cybercrime incident</Typography>
         <Paper sx={{ p: { xs: 2, md: 4 }, borderRadius: 3, boxShadow: 3 }}>
           <form onSubmit={handleSubmit} encType="multipart/form-data">
             {/* Crime Type */}
@@ -184,12 +182,12 @@ export default function ReportCrime() {
                 borderRadius: 2,
                 p: 3,
                 textAlign: 'center',
-                color: '#64748b',
+                color: '#546e7a',
                 mb: 2,
                 cursor: 'pointer',
-                background: '#f8fafc',
+                background: '#E8F1F5',
                 transition: 'border 0.2s',
-                '&:hover': { borderColor: '#2563eb' }
+                '&:hover': { borderColor: '#256D85' }
               }}
               onClick={() => fileInputRef.current && fileInputRef.current.click()}
               onDrop={handleDrop}
@@ -219,7 +217,7 @@ export default function ReportCrime() {
                         {file.url ? (
                           <img src={file.url} alt={file.name} width={60} height={60} style={{ objectFit: 'cover', borderRadius: 4, border: '1px solid #ccc' }} />
                         ) : (
-                          <UploadFileIcon sx={{ fontSize: 40, color: '#64748b' }} />
+                          <UploadFileIcon sx={{ fontSize: 40, color: '#546e7a' }} />
                         )}
                         <Typography variant="caption" display="block">{file.name}</Typography>
                         <IconButton size="small" sx={{ position: 'absolute', top: 0, right: 0 }} onClick={e => { e.stopPropagation(); handleRemoveFile(idx); }}><DeleteIcon fontSize="small" /></IconButton>
@@ -230,11 +228,11 @@ export default function ReportCrime() {
               )}
             </Box>
             {/* Important Notes */}
-            <Paper sx={{ background: '#e8f0fe', p: 2, borderRadius: 2, mb: 2 }} elevation={0}>
-              <Typography fontWeight={700} color="#2563eb" mb={1}>
+            <Paper sx={{ background: '#d6e6ed', p: 2, borderRadius: 2, mb: 2 }} elevation={0}>
+              <Typography fontWeight={700} color="#256D85" mb={1}>
                 Important Notes:
               </Typography>
-              <ul style={{ margin: 0, paddingLeft: 18, color: '#2563eb', fontSize: 15 }}>
+              <ul style={{ margin: 0, paddingLeft: 18, color: '#256D85', fontSize: 15 }}>
                 <li>Provide as much detail as possible for better investigation</li>
                 <li>Do not share personal passwords or sensitive information</li>
                 <li>Keep original evidence safe and secure</li>
@@ -257,7 +255,7 @@ export default function ReportCrime() {
                 variant="contained"
                 sx={{
                   minWidth: 180,
-                  background: 'linear-gradient(90deg, #2563eb 0%, #1e40af 100%)',
+                  background: 'linear-gradient(90deg, #256D85 0%, #174a5b 100%)',
                   color: '#fff',
                   fontWeight: 700,
                   fontSize: 17,

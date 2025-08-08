@@ -4,7 +4,6 @@ import {
   IconButton, Chip, Stack, Divider, TextField, InputAdornment, 
   CircularProgress, Alert, Avatar, MenuItem, Select, FormControl, InputLabel
 } from "@mui/material";
-import OfficerSidebar from "../../components/OfficerSidebar";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -141,8 +140,7 @@ export default function OfficerCases() {
   const uniqueCrimeTypes = [...new Set(cases.map(c => c.crime_type))];
 
   if (loading) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <CircularProgress />
       </Box>
@@ -150,8 +148,7 @@ export default function OfficerCases() {
   );
 
   if (error) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <Alert severity="error">{error}</Alert>
       </Box>
@@ -159,8 +156,7 @@ export default function OfficerCases() {
   );
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1 }}>
         {/* Header */}
         <Box sx={{ 
@@ -195,25 +191,25 @@ export default function OfficerCases() {
           {/* Statistics Cards */}
           <Grid container spacing={3} sx={{ mb: 4 }}>
             <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #256D85 0%, #142B4A 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{stats.total}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Total Cases</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #142B4A 0%, #256D85 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{stats.open}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Open Cases</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #1d5a6f 0%, #4a9fb8 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{stats.inProgress}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Under Investigation</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #256D85 0%, #3b8ea5 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{stats.resolved}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Closed</Typography>
               </Paper>
@@ -386,21 +382,21 @@ export default function OfficerCases() {
                         <IconButton 
                           size="small"
                           onClick={() => navigate(`/case/${c.id}`)}
-                          sx={{ color: '#6b7280' }}
+                          sx={{ color: '#546e7a' }}
                         >
                           <VisibilityIcon />
                         </IconButton>
                         <IconButton 
                           size="small"
                           onClick={() => navigate(`/officer/case/${c.id}/evidence`)}
-                          sx={{ color: '#6b7280' }}
+                          sx={{ color: '#546e7a' }}
                         >
                           <UploadFileIcon />
                         </IconButton>
                         <IconButton 
                           size="small"
                           onClick={() => navigate(`/case/${c.id}/logs`)}
-                          sx={{ color: '#6b7280' }}
+                          sx={{ color: '#546e7a' }}
                         >
                           <AddIcon />
                         </IconButton>
@@ -419,7 +415,7 @@ export default function OfficerCases() {
           )}
 
           {/* Results Summary */}
-          <Paper sx={{ p: 3, borderRadius: 3, mt: 3, background: '#f8fafc' }}>
+          <Paper sx={{ p: 3, borderRadius: 3, mt: 3, background: '#E8F1F5' }}>
             <Typography variant="body2" color="text.secondary" textAlign="center">
               {search || statusFilter !== "all" || crimeTypeFilter !== "all" ? (
                 `Showing ${filteredCases.length} of ${cases.length} cases (filtered)`

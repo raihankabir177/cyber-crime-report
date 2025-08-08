@@ -4,7 +4,6 @@ import {
   Card, CardContent, CardActions, IconButton, Avatar, Stack, Divider,
   TextField, InputAdornment, MenuItem, Select, FormControl, InputLabel
 } from "@mui/material";
-import OfficerSidebar from "../../components/OfficerSidebar";
 import DownloadIcon from '@mui/icons-material/Download';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import SearchIcon from '@mui/icons-material/Search';
@@ -55,7 +54,7 @@ export default function OfficerEvidence() {
     if (contentType.startsWith('image/')) return '#10b981';
     if (contentType === 'application/pdf') return '#ef4444';
     if (contentType.includes('zip') || contentType.includes('rar')) return '#f59e0b';
-    return '#6b7280';
+    return '#546e7a';
   };
 
   const formatDate = (dateString) => {
@@ -106,8 +105,7 @@ export default function OfficerEvidence() {
   };
 
   if (loading) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <CircularProgress />
       </Box>
@@ -115,8 +113,7 @@ export default function OfficerEvidence() {
   );
 
   if (error) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <Alert severity="error">{error}</Alert>
       </Box>
@@ -124,8 +121,7 @@ export default function OfficerEvidence() {
   );
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1 }}>
         {/* Header */}
         <Box sx={{ 
@@ -160,25 +156,25 @@ export default function OfficerEvidence() {
           {/* Stats Cards */}
           <Grid container spacing={3} sx={{ mb: 4 }}>
             <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #256D85 0%, #142B4A 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{stats.total}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Total Files</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #142B4A 0%, #256D85 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{stats.images}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Images</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #1d5a6f 0%, #4a9fb8 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{stats.documents}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Documents</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #256D85 0%, #3b8ea5 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{stats.archives}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Archives</Typography>
               </Paper>
@@ -359,7 +355,7 @@ export default function OfficerEvidence() {
                           href={evidenceFileUrl(ev)} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          sx={{ color: '#6b7280' }}
+                          sx={{ color: '#546e7a' }}
                         >
                           <VisibilityIcon />
                         </IconButton>
@@ -368,7 +364,7 @@ export default function OfficerEvidence() {
                           href={evidenceFileUrl(ev)} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          sx={{ color: '#6b7280' }}
+                          sx={{ color: '#546e7a' }}
                         >
                           <DownloadIcon />
                         </IconButton>
@@ -388,7 +384,7 @@ export default function OfficerEvidence() {
 
           {/* Results Summary */}
           {filteredEvidence.length > 0 && (
-            <Paper sx={{ p: 3, borderRadius: 3, mt: 3, background: '#f8fafc' }}>
+            <Paper sx={{ p: 3, borderRadius: 3, mt: 3, background: '#E8F1F5' }}>
               <Typography variant="body2" color="text.secondary" textAlign="center">
                 Showing {filteredEvidence.length} of {evidence.length} evidence files
               </Typography>

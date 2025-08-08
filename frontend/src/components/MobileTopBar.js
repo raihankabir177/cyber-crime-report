@@ -41,7 +41,7 @@ export default function MobileTopBar({ background, onMenu, mobile }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%)",
+          background: "linear-gradient(135deg, #256D85 0%, #1d5a6f 100%)",
         }}
       >
         <SecurityIcon sx={{ fontSize: 20, color: "#fff" }} />

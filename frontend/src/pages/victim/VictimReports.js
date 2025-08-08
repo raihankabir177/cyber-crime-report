@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Box, Typography, Table, TableHead, TableRow, TableCell, TableBody, Button, CircularProgress, Alert, Paper, Chip
 } from "@mui/material";
-import Sidebar from "../../components/Sidebar";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../../utils/api";
@@ -41,8 +40,7 @@ export default function VictimReports() {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <Sidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Box maxWidth={1200} mx="auto">
@@ -90,7 +88,7 @@ export default function VictimReports() {
                             variant="text"
                             startIcon={<VisibilityIcon />}
                             onClick={() => navigate(`/report_details/${r.id}`)}
-                            sx={{ color: '#2563eb', fontWeight: 600 }}
+                            sx={{ color: '#256D85', fontWeight: 600 }}
                           >
                             View Details
                           </Button>

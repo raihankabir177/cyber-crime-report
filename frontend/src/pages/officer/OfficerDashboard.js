@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, GridLegacy as Grid, Paper, Chip, Button, Stack, Avatar, IconButton, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Alert } from "@mui/material";
-import OfficerSidebar from "../../components/OfficerSidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -99,15 +98,14 @@ export default function OfficerDashboard() {
       const resolvedCount = cases.filter(c => c.status === "Closed").length;
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Top Bar */}
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: { xs: 2, md: 4 }, py: 2, background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
           <IconButton>
             <NotificationsNoneIcon />
           </IconButton>
-          <Avatar sx={{ ml: 2, bgcolor: '#4fd1c5', color: '#fff' }}>{officerName[0]}</Avatar>
+          <Avatar sx={{ ml: 2, bgcolor: '#256D85', color: '#fff' }}>{officerName[0]}</Avatar>
           <Typography sx={{ ml: 1, fontWeight: 500 }}>{officerName}</Typography>
         </Box>
         {/* Main Content */}
@@ -200,7 +198,7 @@ export default function OfficerDashboard() {
                 sx={{ 
                   p: 3, 
                   borderRadius: 3, 
-                  background: 'linear-gradient(90deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%)', 
+                  background: 'linear-gradient(90deg, #256D85 0%, #256D85 46%, #4a9fb8 100%)', 
                   color: '#fff', 
                   minHeight: 120,
                   cursor: 'pointer',
@@ -208,7 +206,7 @@ export default function OfficerDashboard() {
                   '&:hover': {
                     transform: 'translateY(-2px)',
                     boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-                    background: 'linear-gradient(90deg, #4c63d2 0%, #d05ac8 46%, #ffd280 100%)'
+                    background: 'linear-gradient(90deg, #256D85 0%, #256D85 46%, #4a9fb8 100%)'
                   }
                 }}
                 onClick={() => navigate("/officer_cases")}
@@ -234,13 +232,13 @@ export default function OfficerDashboard() {
                   '&:hover': {
                     transform: 'translateY(-2px)',
                     boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-                    background: '#f8fafc'
+                    background: '#E8F1F5'
                   }
                 }}
                 onClick={() => navigate("/investigation_tools")}
               >
                 <Stack direction="row" alignItems="center" spacing={2}>
-                  <DescriptionIcon sx={{ fontSize: 32, color: '#4158d0' }} />
+                  <DescriptionIcon sx={{ fontSize: 32, color: '#256D85' }} />
                   <Box>
                     <Typography fontWeight={700}>Investigation Tools</Typography>
                     <Typography fontSize={15} color="text.secondary">Access forensic resources</Typography>
@@ -260,13 +258,13 @@ export default function OfficerDashboard() {
                   '&:hover': {
                     transform: 'translateY(-2px)',
                     boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-                    background: '#f8fafc'
+                    background: '#E8F1F5'
                   }
                 }}
                 onClick={() => navigate("/officer_evidence")}
               >
                 <Stack direction="row" alignItems="center" spacing={2}>
-                  <FolderIcon sx={{ fontSize: 32, color: '#319795' }} />
+                  <FolderIcon sx={{ fontSize: 32, color: '#174a5b' }} />
                   <Box>
                     <Typography fontWeight={700}>Evidence Management</Typography>
                     <Typography fontSize={15} color="text.secondary">Secure evidence handling</Typography>
@@ -351,8 +349,8 @@ export default function OfficerDashboard() {
                             />
                           </TableCell>
                           <TableCell>
-                            <Button variant="text" size="small" sx={{ color: '#2563eb', fontWeight: 600, mr: 1 }} onClick={() => navigate(`/case/${c.id}`)}>View Case</Button>
-                            <Button variant="text" size="small" sx={{ color: '#319795', fontWeight: 600, mr: 1 }} onClick={() => navigate(`/officer/case/${c.id}/evidence`)}>Evidence</Button>
+                            <Button variant="text" size="small" sx={{ color: '#256D85', fontWeight: 600, mr: 1 }} onClick={() => navigate(`/case/${c.id}`)}>View Case</Button>
+                            <Button variant="text" size="small" sx={{ color: '#174a5b', fontWeight: 600, mr: 1 }} onClick={() => navigate(`/officer/case/${c.id}/evidence`)}>Evidence</Button>
                             <Button variant="text" size="small" sx={{ color: '#38a169', fontWeight: 600 }} onClick={() => navigate(`/case/${c.id}/logs`)}>+ Add Log</Button>
                           </TableCell>
                         </TableRow>
@@ -380,9 +378,9 @@ export default function OfficerDashboard() {
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4}>
-                <Paper sx={{ p: 2, background: '#e8f0fe', borderRadius: 2 }}>
-                  <Typography fontWeight={700} color="#2563eb">Standard Priority</Typography>
-                  <Typography color="#2563eb" fontSize={15}>Cyberbullying, Social Media Harassment</Typography>
+                <Paper sx={{ p: 2, background: '#d6e6ed', borderRadius: 2 }}>
+                  <Typography fontWeight={700} color="#256D85">Standard Priority</Typography>
+                  <Typography color="#256D85" fontSize={15}>Cyberbullying, Social Media Harassment</Typography>
                 </Paper>
               </Grid>
             </Grid>

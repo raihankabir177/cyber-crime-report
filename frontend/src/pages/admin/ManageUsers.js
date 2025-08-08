@@ -6,7 +6,6 @@ import {
   TableRow, Chip, IconButton, Avatar, Dialog, DialogTitle,
   DialogContent, DialogActions, Button, Alert, Snackbar
 } from "@mui/material";
-import AdminSidebar from "../../components/AdminSidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
@@ -31,6 +30,7 @@ export default function ManageUsers() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [reloadKey, setReloadKey] = useState(0);
   
   // Edit functionality
   const [editDialogOpen, setEditDialogOpen] = useState(false);
@@ -94,21 +94,21 @@ export default function ManageUsers() {
     };
 
     fetchUsers();
-  }, []);
+  }, [reloadKey]);
 
   const getRoleColor = (role) => {
     switch (role) {
       case "Victim": return "#10b981";
-      case "Officer": return "#3b82f6";
-      case "Admin": return "#8b5cf6";
-      default: return "#64748b";
+      case "Officer": return "#256D85";
+      case "Admin": return "#256D85";
+      default: return "#546e7a";
     }
   };
 
   const getRoleIcon = (role) => {
     switch (role) {
-      case "Victim": return <PersonIcon sx={{ color: '#8b5cf6' }} />;
-      case "Officer": return <SecurityIcon sx={{ color: '#3b82f6' }} />;
+      case "Victim": return <PersonIcon sx={{ color: '#256D85' }} />;
+      case "Officer": return <SecurityIcon sx={{ color: '#256D85' }} />;
       case "Admin": return <AdminPanelSettingsIcon sx={{ color: '#f97316' }} />;
       default: return <PersonIcon />;
     }
@@ -148,7 +148,7 @@ export default function ManageUsers() {
         });
         setEditDialogOpen(false);
         // Refresh users list
-        window.location.reload();
+        setReloadKey((k) => k + 1);
       } else {
         const errorData = await response.json();
         setSnackbar({
@@ -188,7 +188,7 @@ export default function ManageUsers() {
         });
         setDeleteDialogOpen(false);
         // Refresh users list
-        window.location.reload();
+        setReloadKey((k) => k + 1);
       } else {
         const errorData = await response.json();
         setSnackbar({
@@ -215,9 +215,8 @@ export default function ManageUsers() {
   });
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <AdminSidebar />
-      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
@@ -258,7 +257,7 @@ export default function ManageUsers() {
           )}
 
           {loading && (
-            <Box sx={{ mb: 3, p: 2, bgcolor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: 2 }}>
+            <Box sx={{ mb: 3, p: 2, bgcolor: '#d6e6ed', border: '1px solid #d6e6ed', borderRadius: 2 }}>
               <Typography color="primary">Loading users...</Typography>
             </Box>
           )}
@@ -269,11 +268,11 @@ export default function ManageUsers() {
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                    <Avatar sx={{ bgcolor: '#dbeafe', color: '#1e40af', width: 56, height: 56 }}>
+                    <Avatar sx={{ bgcolor: '#d6e6ed', color: '#174a5b', width: 56, height: 56 }}>
                       <GroupIcon />
                     </Avatar>
                   </Box>
-                  <Typography variant="h3" fontWeight={700} color="#1e40af" mb={1}>
+                  <Typography variant="h3" fontWeight={700} color="#174a5b" mb={1}>
                     {stats.total}
                   </Typography>
                   <Typography variant="h6" fontWeight={600} mb={1}>
@@ -305,11 +304,11 @@ export default function ManageUsers() {
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                    <Avatar sx={{ bgcolor: '#e9d5ff', color: '#7c3aed', width: 56, height: 56 }}>
+                    <Avatar sx={{ bgcolor: '#e9d5ff', color: '#256D85', width: 56, height: 56 }}>
                       <SecurityIcon />
                     </Avatar>
                   </Box>
-                  <Typography variant="h3" fontWeight={700} color="#7c3aed" mb={1}>
+                  <Typography variant="h3" fontWeight={700} color="#256D85" mb={1}>
                     {stats.officers}
                   </Typography>
                   <Typography variant="h6" fontWeight={600} mb={1}>
@@ -350,7 +349,7 @@ export default function ManageUsers() {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <SearchIcon sx={{ color: '#64748b' }} />
+                        <SearchIcon sx={{ color: '#546e7a' }} />
                       </InputAdornment>
                     ),
                   }}
@@ -374,7 +373,7 @@ export default function ManageUsers() {
                     onChange={(e) => setRoleFilter(e.target.value)}
                     startAdornment={
                       <InputAdornment position="start">
-                        <FilterListIcon sx={{ color: '#64748b' }} />
+                        <FilterListIcon sx={{ color: '#546e7a' }} />
                       </InputAdornment>
                     }
                     sx={{
@@ -401,17 +400,17 @@ export default function ManageUsers() {
             <TableContainer>
               <Table>
                 <TableHead>
-                  <TableRow sx={{ backgroundColor: '#f8fafc' }}>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>USER</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>CONTACT</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>ROLE</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>JOIN DATE</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>ACTIONS</TableCell>
+                  <TableRow sx={{ backgroundColor: '#E8F1F5' }}>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>USER</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>CONTACT</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>ROLE</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>JOIN DATE</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>ACTIONS</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {filteredUsers.map((user) => (
-                    <TableRow key={user.id} sx={{ '&:hover': { backgroundColor: '#f8fafc' } }}>
+                    <TableRow key={user.id} sx={{ '&:hover': { backgroundColor: '#E8F1F5' } }}>
                       <TableCell>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                           <Avatar sx={{ width: 40, height: 40, bgcolor: '#f1f5f9' }}>
@@ -456,7 +455,7 @@ export default function ManageUsers() {
                         <Box sx={{ display: 'flex', gap: 1 }}>
                           <IconButton 
                             size="small" 
-                            sx={{ color: '#3b82f6' }}
+                            sx={{ color: '#256D85' }}
                             onClick={() => handleEditUser(user)}
                           >
                             <EditIcon />

@@ -4,7 +4,6 @@ import {
   IconButton, Chip, Stack, Divider, TextField, InputAdornment, 
   List, ListItem, ListItemIcon, ListItemText, Avatar, Alert
 } from "@mui/material";
-import OfficerSidebar from "../../components/OfficerSidebar";
 import SearchIcon from '@mui/icons-material/Search';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import TimelineIcon from '@mui/icons-material/Timeline';
@@ -44,7 +43,7 @@ export default function InvestigationTools() {
       title: 'Log Analysis',
       description: 'Comprehensive log parsing and pattern recognition',
       icon: <TimelineIcon />,
-      color: '#3b82f6',
+      color: '#256D85',
       features: ['Real-time Monitoring', 'Pattern Detection', 'Anomaly Alerting', 'Historical Analysis'],
       status: 'active'
     },
@@ -102,8 +101,7 @@ export default function InvestigationTools() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1 }}>
         {/* Header */}
         <Box sx={{ 
@@ -155,25 +153,25 @@ export default function InvestigationTools() {
           {/* Analytics Overview */}
           <Grid container spacing={3} sx={{ mb: 4 }}>
             <Grid item xs={12} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #256D85 0%, #142B4A 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{analyticsData.totalCases}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Total Cases</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #142B4A 0%, #256D85 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{analyticsData.activeInvestigations}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Active Investigations</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #1d5a6f 0%, #4a9fb8 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{analyticsData.completedThisWeek}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Completed This Week</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={3}>
-              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', color: 'white' }}>
+              <Paper sx={{ p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #256D85 0%, #3b8ea5 100%)', color: 'white' }}>
                 <Typography variant="h4" fontWeight={700}>{analyticsData.averageResolutionTime}</Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>Avg Resolution Time</Typography>
               </Paper>
@@ -283,7 +281,7 @@ export default function InvestigationTools() {
                           <Avatar sx={{ 
                             width: 32, 
                             height: 32, 
-                            bgcolor: getStatusColor(activity.status) === 'success' ? '#10b981' : '#3b82f6'
+                            bgcolor: getStatusColor(activity.status) === 'success' ? '#10b981' : '#256D85'
                           }}>
                             {getStatusIcon(activity.status)}
                           </Avatar>

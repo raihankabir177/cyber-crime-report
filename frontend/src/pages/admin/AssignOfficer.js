@@ -4,7 +4,6 @@ import {
   Paper, GridLegacy as Grid, Card, CardContent, List, ListItem, ListItemIcon, 
   ListItemText, Chip, FormControl, InputLabel, IconButton
 } from "@mui/material";
-import AdminSidebar from "../../components/AdminSidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import PersonIcon from '@mui/icons-material/Person';
@@ -108,9 +107,8 @@ export default function AssignOfficer() {
   const unassignedCount = reports.length;
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <AdminSidebar />
-      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
@@ -154,7 +152,7 @@ export default function AssignOfficer() {
                 {/* Select Case */}
                 <FormControl fullWidth sx={{ mb: 3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <DescriptionIcon sx={{ mr: 1, color: '#64748b' }} />
+                    <DescriptionIcon sx={{ mr: 1, color: '#546e7a' }} />
                     <Typography variant="body2" fontWeight={600}>
                       Select Case *
                     </Typography>
@@ -194,7 +192,7 @@ export default function AssignOfficer() {
                 {/* Select Officer */}
                 <FormControl fullWidth sx={{ mb: 3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <SecurityIcon sx={{ mr: 1, color: '#64748b' }} />
+                    <SecurityIcon sx={{ mr: 1, color: '#546e7a' }} />
                     <Typography variant="body2" fontWeight={600}>
                       Select Officer *
                     </Typography>
@@ -264,14 +262,14 @@ export default function AssignOfficer() {
                     onClick={handleAssign}
                     disabled={!selectedReport || !selectedOfficer}
                     sx={{
-                      background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 100%)',
+                      background: 'linear-gradient(135deg, #10b981 0%, #256D85 100%)',
                       color: 'white',
                       px: 4,
                       py: 1.5,
                       borderRadius: 2,
                       fontWeight: 600,
                       '&:hover': {
-                        background: 'linear-gradient(135deg, #059669 0%, #2563eb 100%)'
+                        background: 'linear-gradient(135deg, #059669 0%, #256D85 100%)'
                       }
                     }}
                   >
@@ -286,10 +284,10 @@ export default function AssignOfficer() {
                       borderRadius: 2,
                       fontWeight: 600,
                       borderColor: '#e2e8f0',
-                      color: '#64748b',
+                      color: '#546e7a',
                       '&:hover': {
                         borderColor: '#cbd5e1',
-                        backgroundColor: '#f8fafc'
+                        backgroundColor: '#E8F1F5'
                       }
                     }}
                   >
@@ -329,7 +327,7 @@ export default function AssignOfficer() {
                         cursor: 'pointer',
                         borderRadius: 2,
                         mb: 1,
-                        backgroundColor: '#f8fafc',
+                        backgroundColor: '#E8F1F5',
                         border: '1px solid #e2e8f0',
                         '&:hover': {
                           backgroundColor: '#f1f5f9'
@@ -338,7 +336,7 @@ export default function AssignOfficer() {
                       onClick={() => setSelectedOfficer(officer.id)}
                     >
                       <ListItemIcon>
-                        <SecurityIcon sx={{ color: '#64748b' }} />
+                        <SecurityIcon sx={{ color: '#546e7a' }} />
                       </ListItemIcon>
                       <ListItemText
                         primary={officer.name}

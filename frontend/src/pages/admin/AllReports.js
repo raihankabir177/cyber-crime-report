@@ -5,7 +5,6 @@ import {
   Table, TableBody, TableCell, TableContainer, TableHead, 
   TableRow, Chip, IconButton, Avatar
 } from "@mui/material";
-import AdminSidebar from "../../components/AdminSidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
@@ -77,7 +76,7 @@ export default function AllReports() {
       case "Open": return "#ef4444";
       case "Under Investigation": return "#f59e0b";
       case "Closed": return "#10b981";
-      default: return "#64748b";
+      default: return "#546e7a";
     }
   };
 
@@ -101,9 +100,8 @@ export default function AllReports() {
   });
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <AdminSidebar />
-      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
@@ -144,7 +142,7 @@ export default function AllReports() {
           )}
 
           {loading && (
-            <Box sx={{ mb: 3, p: 2, bgcolor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: 2 }}>
+            <Box sx={{ mb: 3, p: 2, bgcolor: '#d6e6ed', border: '1px solid #d6e6ed', borderRadius: 2 }}>
               <Typography color="primary">Loading reports...</Typography>
             </Box>
           )}
@@ -155,11 +153,11 @@ export default function AllReports() {
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                    <Avatar sx={{ bgcolor: '#dbeafe', color: '#1e40af', width: 56, height: 56 }}>
+                    <Avatar sx={{ bgcolor: '#d6e6ed', color: '#174a5b', width: 56, height: 56 }}>
                       <DescriptionIcon />
                     </Avatar>
                   </Box>
-                  <Typography variant="h3" fontWeight={700} color="#1e40af" mb={1}>
+                  <Typography variant="h3" fontWeight={700} color="#174a5b" mb={1}>
                     {stats.total}
                   </Typography>
                   <Typography variant="h6" fontWeight={600} mb={1}>
@@ -236,7 +234,7 @@ export default function AllReports() {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <SearchIcon sx={{ color: '#64748b' }} />
+                        <SearchIcon sx={{ color: '#546e7a' }} />
                       </InputAdornment>
                     ),
                   }}
@@ -260,7 +258,7 @@ export default function AllReports() {
                     onChange={(e) => setStatusFilter(e.target.value)}
                     startAdornment={
                       <InputAdornment position="start">
-                        <FilterListIcon sx={{ color: '#64748b' }} />
+                        <FilterListIcon sx={{ color: '#546e7a' }} />
                       </InputAdornment>
                     }
                     sx={{
@@ -286,7 +284,7 @@ export default function AllReports() {
                     onChange={(e) => setCrimeTypeFilter(e.target.value)}
                     startAdornment={
                       <InputAdornment position="start">
-                        <FilterListIcon sx={{ color: '#64748b' }} />
+                        <FilterListIcon sx={{ color: '#546e7a' }} />
                       </InputAdornment>
                     }
                     sx={{
@@ -315,20 +313,20 @@ export default function AllReports() {
             <TableContainer>
               <Table>
                 <TableHead>
-                  <TableRow sx={{ backgroundColor: '#f8fafc' }}>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>REPORT ID</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>VICTIM</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>CRIME TYPE</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>DATE REPORTED</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>STATUS</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>ASSIGNED OFFICER</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>ACTIONS</TableCell>
+                  <TableRow sx={{ backgroundColor: '#E8F1F5' }}>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>REPORT ID</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>VICTIM</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>CRIME TYPE</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>DATE REPORTED</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>STATUS</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>ASSIGNED OFFICER</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>ACTIONS</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {filteredReports.length > 0 ? (
                     filteredReports.map((report) => (
-                      <TableRow key={report.id} sx={{ '&:hover': { backgroundColor: '#f8fafc' } }}>
+                      <TableRow key={report.id} sx={{ '&:hover': { backgroundColor: '#E8F1F5' } }}>
                         <TableCell>
                           <Typography variant="body1" fontWeight={600}>
                             #{String(report.id).padStart(3, '0')}
@@ -371,7 +369,7 @@ export default function AllReports() {
                         </TableCell>
                         <TableCell>
                           <Box sx={{ display: 'flex', gap: 1 }}>
-                            <IconButton size="small" sx={{ color: '#3b82f6' }}>
+                            <IconButton size="small" sx={{ color: '#256D85' }}>
                               <VisibilityIcon />
                             </IconButton>
                             {(report.assigned_officer_name === "Not Assigned" || !report.assigned_officer_name) && (

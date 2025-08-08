@@ -11,7 +11,7 @@ const roles = [
     label: "Victim",
     description: "Report cyber crimes and track your cases",
     color: "#e6f9ed",
-    icon: <PersonIcon sx={{ fontSize: 48, color: '#319795' }} />,
+    icon: <PersonIcon sx={{ fontSize: 48, color: '#174a5b' }} />,
     features: [
       "Submit crime reports",
       "Track case progress",
@@ -24,8 +24,8 @@ const roles = [
     key: "officer",
     label: "Officer",
     description: "Investigate cases and manage evidence",
-    color: "#e6f0fa",
-    icon: <ShieldIcon sx={{ fontSize: 48, color: '#2563eb' }} />,
+    color: "#d6e6ed",
+    icon: <ShieldIcon sx={{ fontSize: 48, color: '#256D85' }} />,
     features: [
       "Investigate assigned cases",
       "Manage evidence",
@@ -38,8 +38,8 @@ const roles = [
     key: "admin",
     label: "Administrator",
     description: "Manage system users and operations",
-    color: "#f3eaff",
-    icon: <CrownIcon sx={{ fontSize: 48, color: '#a259e6' }} />,
+    color: "#d6e6ed",
+    icon: <CrownIcon sx={{ fontSize: 48, color: '#256D85' }} />,
     features: [
       "Assign officers to cases",
       "Manage all users",
@@ -57,7 +57,7 @@ export default function RoleSelection() {
       <Box sx={{ width: '100%', maxWidth: 900, px: 2 }}>
         <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
           <Box sx={{ background: '#e6f9ed', borderRadius: '50%', p: 2, mb: 1 }}>
-            <PersonIcon sx={{ color: '#319795', fontSize: 40 }} />
+            <PersonIcon sx={{ color: '#174a5b', fontSize: 40 }} />
           </Box>
           <Typography variant="h4" fontWeight={700} mb={1}>Choose Your Role</Typography>
           <Typography color="text.secondary" fontSize={18} mb={2}>Select the type of account you want to create</Typography>
@@ -95,7 +95,7 @@ export default function RoleSelection() {
         </Grid>
         <Typography align="center" mt={4} color="text.secondary" fontSize={17}>
           Already have an account?{' '}
-          <span style={{ color: '#2563eb', cursor: 'pointer', fontWeight: 600 }} onClick={() => navigate('/auth/login')}>Sign in here</span>
+          <span style={{ color: '#256D85', cursor: 'pointer', fontWeight: 600 }} onClick={() => navigate('/auth/login')}>Sign in here</span>
         </Typography>
       </Box>
     </Box>

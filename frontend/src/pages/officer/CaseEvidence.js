@@ -11,7 +11,6 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PersonIcon from '@mui/icons-material/Person';
 import ImageIcon from '@mui/icons-material/Image';
 import DescriptionIcon from '@mui/icons-material/Description';
-import OfficerSidebar from "../../components/OfficerSidebar";
 import { evidenceFileUrl, apiFetch } from "../../utils/api";
 
 export default function CaseEvidence() {
@@ -138,8 +137,7 @@ export default function CaseEvidence() {
   };
 
   if (loading) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <CircularProgress />
       </Box>
@@ -147,8 +145,7 @@ export default function CaseEvidence() {
   );
 
   if (error) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <Alert severity="error">{error}</Alert>
       </Box>
@@ -156,8 +153,7 @@ export default function CaseEvidence() {
   );
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1 }}>
         {/* Header */}
         <Box sx={{ 
@@ -190,12 +186,7 @@ export default function CaseEvidence() {
         {/* Main Content */}
         <Box sx={{ p: { xs: 2, md: 4 } }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2, mb: 3 }}>
-            <Button startIcon={<ArrowBackIcon />} onClick={() => {
-              // Navigate back and trigger a page refresh to update evidence
-              navigate(`/case/${id}`);
-              // Force a page refresh to show updated evidence
-              setTimeout(() => window.location.reload(), 100);
-            }}>
+            <Button startIcon={<ArrowBackIcon />} onClick={() => navigate(`/case/${id}`)}>
               Back to Case
             </Button>
             <Button 
@@ -203,7 +194,7 @@ export default function CaseEvidence() {
               startIcon={uploading ? <CircularProgress size={20} color="inherit" /> : <UploadFileIcon />}
               onClick={() => fileInputRef.current && fileInputRef.current.click()}
               disabled={uploading}
-              sx={{ background: 'linear-gradient(90deg, #2563eb 0%, #1e40af 100%)' }}
+              sx={{ background: 'linear-gradient(90deg, #256D85 0%, #174a5b 100%)' }}
             >
               {uploading ? 'Uploading...' : '+ Upload Evidence'}
             </Button>
@@ -237,7 +228,7 @@ export default function CaseEvidence() {
                         </ListItemIcon>
                         <ListItemText
                           primary={
-                            <Typography fontWeight={600} color="#2563eb">
+                            <Typography fontWeight={600} color="#256D85">
                               {ev.original_name}
                             </Typography>
                           }

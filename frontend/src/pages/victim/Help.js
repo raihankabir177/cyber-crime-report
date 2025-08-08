@@ -85,7 +85,7 @@ const resources = [
 
 export default function Help() {
   return (
-    <Box sx={{ background: '#f8fafc', minHeight: '100vh', p: { xs: 2, md: 6 } }}>
+    <Box sx={{ background: '#E8F1F5', minHeight: '100vh', p: { xs: 2, md: 6 } }}>
       <Box mb={2}>
         <Typography variant="h5" fontWeight={700}>Help & Support</Typography>
         <Typography color="text.secondary" mb={3}>Find answers to common questions and get support</Typography>
@@ -136,12 +136,12 @@ export default function Help() {
               </ListItem>
             </List>
           </Paper>
-          <Paper sx={{ p: 3, borderRadius: 3, background: '#f0f7ff' }}>
+          <Paper sx={{ p: 3, borderRadius: 3, background: '#d6e6ed' }}>
             <Typography variant="h6" fontWeight={700} mb={1}>Helpful Resources</Typography>
             <List>
               {resources.map((r, idx) => (
                 <ListItem key={idx} disablePadding>
-                  <Link href={r.url} underline="hover" color="#2563eb">→ {r.label}</Link>
+                  <Link href={r.url} underline="hover" color="#256D85">→ {r.label}</Link>
                 </ListItem>
               ))}
             </List>

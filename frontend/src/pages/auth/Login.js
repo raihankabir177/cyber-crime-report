@@ -23,10 +23,20 @@ import {
   Security as SecurityIcon,
   ArrowForward as ArrowForwardIcon,
   Shield as ShieldIcon,
-  VerifiedUser as VerifiedUserIcon
+  VerifiedUser as VerifiedUserIcon,
+  Person as PersonIcon,
+  LocalPolice as LocalPoliceIcon,
+  AdminPanelSettings as AdminPanelSettingsIcon
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../../utils/api";
+
+const DEMO_PASSWORD = "Asdfghjk";
+const DEMO_ACCOUNTS = [
+  { label: "Victim", email: "victim@gmail.com", icon: PersonIcon },
+  { label: "Officer", email: "officer@gmail.com", icon: LocalPoliceIcon },
+  { label: "Admin", email: "admin@gmail.com", icon: AdminPanelSettingsIcon },
+];
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -37,22 +47,29 @@ export default function Login() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
+  const handleQuickLogin = (account) => {
+    const creds = { email: account.email, password: DEMO_PASSWORD };
+    setForm(creds);
+    login(creds);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    login(form);
+  };
+
+  const login = async (credentials) => {
     setError("");
     setLoading(true);
-    
-    console.log("Login attempt with:", form);
-    
+
     try {
       const res = await apiFetch("/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(credentials),
         credentials: "include"
       });
       const data = await res.json();
-      console.log("Login response:", data);
       
       if (res.ok && data.role) {
         sessionStorage.setItem("userName", data.name || "");
@@ -80,7 +97,7 @@ export default function Login() {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%)',
+        background: 'linear-gradient(135deg, #142B4A 0%, #1b4260 50%, #256D85 100%)',
         position: 'relative',
         overflow: 'hidden',
         '&::before': {
@@ -104,7 +121,7 @@ export default function Login() {
           width: 200,
           height: 200,
           borderRadius: '50%',
-          background: 'linear-gradient(45deg, rgba(79, 209, 197, 0.1) 0%, rgba(56, 178, 172, 0.1) 100%)',
+          background: 'linear-gradient(45deg, rgba(37, 109, 133, 0.1) 0%, rgba(56, 178, 172, 0.1) 100%)',
           animation: 'float 6s ease-in-out infinite',
           '@keyframes float': {
             '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
@@ -144,9 +161,9 @@ export default function Login() {
                       width: 60,
                       height: 60,
                       borderRadius: '16px',
-                      background: 'linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%)',
+                      background: 'linear-gradient(135deg, #256D85 0%, #1d5a6f 100%)',
                       mr: 2,
-                      boxShadow: '0 8px 32px rgba(79, 209, 197, 0.3)'
+                      boxShadow: '0 8px 32px rgba(37, 109, 133, 0.3)'
                     }}
                   >
                     <ShieldIcon sx={{ fontSize: 32, color: 'white' }} />
@@ -159,7 +176,7 @@ export default function Login() {
                 <Typography variant="h2" fontWeight={700} sx={{ mb: 2, fontSize: { xs: '2.5rem', md: '3.5rem' }, lineHeight: 1.2 }}>
                   Secure Digital
                   <Box component="span" sx={{ 
-                    background: 'linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%)',
+                    background: 'linear-gradient(135deg, #256D85 0%, #1d5a6f 100%)',
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent'
@@ -175,19 +192,19 @@ export default function Login() {
                 {/* Feature Highlights */}
                 <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <VerifiedUserIcon sx={{ mr: 2, color: '#4fd1c5' }} />
+                    <VerifiedUserIcon sx={{ mr: 2, color: '#256D85' }} />
                     <Typography variant="body1" sx={{ opacity: 0.9 }}>
                       Enterprise-grade security & encryption
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <SecurityIcon sx={{ mr: 2, color: '#4fd1c5' }} />
+                    <SecurityIcon sx={{ mr: 2, color: '#256D85' }} />
                     <Typography variant="body1" sx={{ opacity: 0.9 }}>
                       Real-time incident tracking & monitoring
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <ShieldIcon sx={{ mr: 2, color: '#4fd1c5' }} />
+                    <ShieldIcon sx={{ mr: 2, color: '#256D85' }} />
                     <Typography variant="body1" sx={{ opacity: 0.9 }}>
                       Multi-role access control & management
                     </Typography>
@@ -217,7 +234,7 @@ export default function Login() {
                     left: 0,
                     right: 0,
                     height: '4px',
-                    background: 'linear-gradient(90deg, #4fd1c5 0%, #38b2ac 50%, #319795 100%)',
+                    background: 'linear-gradient(90deg, #256D85 0%, #1d5a6f 50%, #174a5b 100%)',
                     borderRadius: '4px 4px 0 0'
                   }
                 }}
@@ -228,7 +245,7 @@ export default function Login() {
                     variant="h3"
                     fontWeight={700}
                     sx={{
-                      background: 'linear-gradient(135deg, #1a202c 0%, #2d3748 100%)',
+                      background: 'linear-gradient(135deg, #263238 0%, #263238 100%)',
                       backgroundClip: 'text',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
@@ -275,7 +292,7 @@ export default function Login() {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <EmailIcon sx={{ color: '#4fd1c5' }} />
+                              <EmailIcon sx={{ color: '#256D85' }} />
                             </InputAdornment>
                           ),
                         }}
@@ -288,15 +305,15 @@ export default function Login() {
                               borderWidth: 2
                             },
                             '&:hover fieldset': {
-                              borderColor: '#4fd1c5'
+                              borderColor: '#256D85'
                             },
                             '&.Mui-focused fieldset': {
-                              borderColor: '#4fd1c5',
+                              borderColor: '#256D85',
                               borderWidth: 2
                             }
                           },
                           '& .MuiInputLabel-root.Mui-focused': {
-                            color: '#4fd1c5',
+                            color: '#256D85',
                             fontWeight: 600
                           }
                         }}
@@ -315,7 +332,7 @@ export default function Login() {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <LockIcon sx={{ color: '#4fd1c5' }} />
+                              <LockIcon sx={{ color: '#256D85' }} />
                             </InputAdornment>
                           ),
                           endAdornment: (
@@ -323,7 +340,7 @@ export default function Login() {
                               <IconButton
                                 onClick={handleTogglePasswordVisibility}
                                 edge="end"
-                                sx={{ color: '#4fd1c5' }}
+                                sx={{ color: '#256D85' }}
                               >
                                 {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                               </IconButton>
@@ -339,15 +356,15 @@ export default function Login() {
                               borderWidth: 2
                             },
                             '&:hover fieldset': {
-                              borderColor: '#4fd1c5'
+                              borderColor: '#256D85'
                             },
                             '&.Mui-focused fieldset': {
-                              borderColor: '#4fd1c5',
+                              borderColor: '#256D85',
                               borderWidth: 2
                             }
                           },
                           '& .MuiInputLabel-root.Mui-focused': {
-                            color: '#4fd1c5',
+                            color: '#256D85',
                             fontWeight: 600
                           }
                         }}
@@ -364,16 +381,16 @@ export default function Login() {
                         sx={{
                           py: 2,
                           borderRadius: 3,
-                          background: 'linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%)',
+                          background: 'linear-gradient(135deg, #256D85 0%, #1d5a6f 100%)',
                           color: 'white',
                           fontWeight: 700,
                           fontSize: '1.1rem',
                           textTransform: 'none',
-                          boxShadow: '0 10px 25px -5px rgba(79, 209, 197, 0.4)',
+                          boxShadow: '0 10px 25px -5px rgba(37, 109, 133, 0.4)',
                           transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                           '&:hover': {
-                            background: 'linear-gradient(135deg, #38b2ac 0%, #319795 100%)',
-                            boxShadow: '0 20px 40px -10px rgba(79, 209, 197, 0.6)',
+                            background: 'linear-gradient(135deg, #1d5a6f 0%, #174a5b 100%)',
+                            boxShadow: '0 20px 40px -10px rgba(37, 109, 133, 0.6)',
                             transform: 'translateY(-2px)'
                           },
                           '&:disabled': {
@@ -388,6 +405,41 @@ export default function Login() {
                     </Grid>
                   </Grid>
                 </form>
+
+                {/* Quick demo accounts */}
+                <Typography
+                  variant="caption"
+                  sx={{ display: 'block', textAlign: 'center', mt: 4, mb: 1.5, fontWeight: 700, letterSpacing: 2, color: '#263238', opacity: 0.7 }}
+                >
+                  QUICK DEMO ACCOUNTS
+                </Typography>
+                <Grid container spacing={1.5}>
+                  {DEMO_ACCOUNTS.map(({ label, email, icon: Icon }) => (
+                    <Grid item xs={4} key={label}>
+                      <Button
+                        fullWidth
+                        disabled={loading}
+                        onClick={() => handleQuickLogin({ label, email })}
+                        sx={{
+                          flexDirection: 'column',
+                          gap: 0.5,
+                          py: 1.5,
+                          cursor: 'pointer',
+                          borderRadius: 4,
+                          border: '1px solid #c9d6de',
+                          background: '#E8F1F5',
+                          color: '#256D85',
+                          fontWeight: 700,
+                          textTransform: 'none',
+                          '&:hover': { background: '#d6e6ed', borderColor: '#256D85' }
+                        }}
+                      >
+                        <Icon />
+                        {label}
+                      </Button>
+                    </Grid>
+                  ))}
+                </Grid>
 
                 {/* Divider */}
                 <Divider sx={{ my: 4 }}>
@@ -405,17 +457,17 @@ export default function Login() {
                     sx={{
                       py: 2,
                       borderRadius: 3,
-                      borderColor: '#4fd1c5',
-                      color: '#4fd1c5',
+                      borderColor: '#256D85',
+                      color: '#256D85',
                       fontWeight: 600,
                       fontSize: '1rem',
                       textTransform: 'none',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       '&:hover': {
-                        borderColor: '#38b2ac',
-                        backgroundColor: 'rgba(79, 209, 197, 0.1)',
+                        borderColor: '#1d5a6f',
+                        backgroundColor: 'rgba(37, 109, 133, 0.1)',
                         transform: 'translateY(-1px)',
-                        boxShadow: '0 10px 25px -5px rgba(79, 209, 197, 0.2)'
+                        boxShadow: '0 10px 25px -5px rgba(37, 109, 133, 0.2)'
                       }
                     }}
                   >
@@ -427,11 +479,11 @@ export default function Login() {
                 <Box sx={{ textAlign: 'center', mt: 4 }}>
                   <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
                     By signing in, you agree to our{' '}
-                    <Link href="#" sx={{ color: '#4fd1c5', textDecoration: 'none', fontWeight: 600 }}>
+                    <Link href="#" sx={{ color: '#256D85', textDecoration: 'none', fontWeight: 600 }}>
                       Terms of Service
                     </Link>{' '}
                     and{' '}
-                    <Link href="#" sx={{ color: '#4fd1c5', textDecoration: 'none', fontWeight: 600 }}>
+                    <Link href="#" sx={{ color: '#256D85', textDecoration: 'none', fontWeight: 600 }}>
                       Privacy Policy
                     </Link>
                   </Typography>

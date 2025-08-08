@@ -56,11 +56,11 @@ export default function AdminRegister() {
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(135deg, #142B4A 0%, #1b4260 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Paper elevation={4} sx={{ p: { xs: 2, sm: 4 }, borderRadius: 4, maxWidth: 400, width: '100%' }}>
         <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
-          <Box sx={{ background: '#f3eaff', borderRadius: '50%', p: 2, mb: 1 }}>
-            <CrownIcon sx={{ color: '#a259e6', fontSize: 40 }} />
+          <Box sx={{ background: '#d6e6ed', borderRadius: '50%', p: 2, mb: 1 }}>
+            <CrownIcon sx={{ color: '#256D85', fontSize: 40 }} />
           </Box>
           <Typography variant="h5" fontWeight={700} mb={0.5}>Administrator Account</Typography>
           <Typography color="text.secondary" fontSize={15} mb={1}>Manage system users and oversee operations</Typography>
@@ -76,7 +76,7 @@ export default function AdminRegister() {
             fullWidth
             margin="normal"
             required
-            InputProps={{ startAdornment: <InputAdornment position="start"><PersonIcon sx={{ color: '#a259e6' }} /></InputAdornment> }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><PersonIcon sx={{ color: '#256D85' }} /></InputAdornment> }}
           />
           <TextField
             label="Email Address"
@@ -86,7 +86,7 @@ export default function AdminRegister() {
             fullWidth
             margin="normal"
             required
-            InputProps={{ startAdornment: <InputAdornment position="start"><EmailIcon sx={{ color: '#a259e6' }} /></InputAdornment> }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><EmailIcon sx={{ color: '#256D85' }} /></InputAdornment> }}
           />
           <TextField
             label="Phone Number"
@@ -96,7 +96,7 @@ export default function AdminRegister() {
             fullWidth
             margin="normal"
             required
-            InputProps={{ startAdornment: <InputAdornment position="start"><PhoneIcon sx={{ color: '#a259e6' }} /></InputAdornment> }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><PhoneIcon sx={{ color: '#256D85' }} /></InputAdornment> }}
           />
           <TextField
             label="Admin Code"
@@ -106,7 +106,7 @@ export default function AdminRegister() {
             fullWidth
             margin="normal"
             required
-            InputProps={{ startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#a259e6' }} /></InputAdornment> }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#256D85' }} /></InputAdornment> }}
             helperText="Contact system administrator for the code"
           />
           <TextField
@@ -117,7 +117,7 @@ export default function AdminRegister() {
             fullWidth
             margin="normal"
             required
-            InputProps={{ startAdornment: <InputAdornment position="start"><WorkIcon sx={{ color: '#a259e6' }} /></InputAdornment> }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><WorkIcon sx={{ color: '#256D85' }} /></InputAdornment> }}
             placeholder="e.g., System Administrator"
           />
           <TextField
@@ -130,7 +130,7 @@ export default function AdminRegister() {
             margin="normal"
             required
             InputProps={{
-              startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#a259e6' }} /></InputAdornment>,
+              startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#256D85' }} /></InputAdornment>,
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={() => setShowPassword((show) => !show)} edge="end">
@@ -150,7 +150,7 @@ export default function AdminRegister() {
             margin="normal"
             required
             InputProps={{
-              startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#a259e6' }} /></InputAdornment>,
+              startAdornment: <InputAdornment position="start"><LockIcon sx={{ color: '#256D85' }} /></InputAdornment>,
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={() => setShowConfirm((show) => !show)} edge="end">
@@ -164,14 +164,14 @@ export default function AdminRegister() {
             type="submit"
             variant="contained"
             fullWidth
-            sx={{ mt: 2, mb: 1, background: 'linear-gradient(90deg, #a259e6 0%, #6e45e2 100%)', color: '#fff', fontWeight: 700, fontSize: 17, boxShadow: 'none' }}
+            sx={{ mt: 2, mb: 1, background: 'linear-gradient(90deg, #256D85 0%, #174a5b 100%)', color: '#fff', fontWeight: 700, fontSize: 17, boxShadow: 'none' }}
           >
             Create Administrator Account
           </Button>
         </form>
         <Typography align="center" mt={1} color="text.secondary" fontSize={15}>
           Already have an account?{' '}
-          <span style={{ color: '#2563eb', cursor: 'pointer', fontWeight: 600 }} onClick={() => navigate('/auth/login')}>Sign in here</span>
+          <span style={{ color: '#256D85', cursor: 'pointer', fontWeight: 600 }} onClick={() => navigate('/auth/login')}>Sign in here</span>
         </Typography>
       </Paper>
     </Box>

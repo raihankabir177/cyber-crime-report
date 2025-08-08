@@ -15,7 +15,6 @@ import {
   IconButton,
   Chip
 } from "@mui/material";
-import OfficerSidebar from "../../components/OfficerSidebar";
 import { useSessionStorage } from "../../utils/useSessionStorage";
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
@@ -190,8 +189,7 @@ export default function OfficerProfile() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <OfficerSidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Header */}
         <Box sx={{ 
@@ -341,8 +339,8 @@ export default function OfficerProfile() {
                   sx={{
                     width: 120,
                     height: 120,
-                    bgcolor: '#4fd1c5',
-                    color: '#282c34',
+                    bgcolor: '#256D85',
+                    color: '#142B4A',
                     fontSize: '3rem',
                     margin: '0 auto 2rem'
                   }}
@@ -386,7 +384,7 @@ export default function OfficerProfile() {
                 <Grid container spacing={3}>
                   <Grid item xs={6}>
                     <Box sx={{ textAlign: 'center', p: 2, bgcolor: '#e6fffa', borderRadius: 2 }}>
-                      <Typography variant="h4" fontWeight={700} color="#319795">
+                      <Typography variant="h4" fontWeight={700} color="#174a5b">
                         {profile.activeCases}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">

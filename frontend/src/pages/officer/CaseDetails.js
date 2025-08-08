@@ -146,8 +146,8 @@ export default function CaseDetails() {
             startIcon={<ArrowBackIcon />}
             onClick={() => navigate("/officer_cases")}
             sx={{ 
-              borderColor: '#2563eb', 
-              color: '#2563eb',
+              borderColor: '#256D85', 
+              color: '#256D85',
               '&:hover': {
                 borderColor: '#1d4ed8',
                 backgroundColor: '#eff6ff'
@@ -230,7 +230,7 @@ export default function CaseDetails() {
                 <Button
                   variant="contained"
                   startIcon={<ChatBubbleOutlineIcon />}
-                  sx={{ background: '#439889', textTransform: 'none', borderRadius: 2, fontWeight: 500 }}
+                  sx={{ background: '#256D85', textTransform: 'none', borderRadius: 2, fontWeight: 500 }}
                   onClick={() => navigate(`/case/${id}/logs`)}
                 >
                   Add Log Entry
@@ -244,10 +244,10 @@ export default function CaseDetails() {
                 {!showAllLogs ? (
                   <Box>
                     <Box display="flex" alignItems="flex-start" mb={3}>
-                      <Box sx={{ borderLeft: '4px solid #439889', minHeight: 48, mr: 2, mt: 0.5 }} />
+                      <Box sx={{ borderLeft: '4px solid #256D85', minHeight: 48, mr: 2, mt: 0.5 }} />
                       <Box flex={1}>
                         <Box display="flex" alignItems="center" mb={0.5}>
-                          <ChatBubbleOutlineIcon sx={{ color: '#439889', fontSize: 20, mr: 1 }} />
+                          <ChatBubbleOutlineIcon sx={{ color: '#256D85', fontSize: 20, mr: 1 }} />
                           <Typography fontWeight={700} sx={{ fontSize: 16 }}>
                             {logs[0].action}
                           </Typography>
@@ -264,7 +264,7 @@ export default function CaseDetails() {
                           variant="outlined" 
                           size="small"
                           onClick={() => setShowAllLogs(true)}
-                          sx={{ color: '#439889', borderColor: '#439889' }}
+                          sx={{ color: '#256D85', borderColor: '#256D85' }}
                         >
                           View All {logs.length} Investigation Logs
                         </Button>
@@ -277,10 +277,10 @@ export default function CaseDetails() {
                     <List sx={{ p: 0 }}>
                       {logs.map((log, idx) => (
                         <Box key={idx} display="flex" alignItems="flex-start" mb={3}>
-                          <Box sx={{ borderLeft: '4px solid #439889', minHeight: 48, mr: 2, mt: 0.5 }} />
+                          <Box sx={{ borderLeft: '4px solid #256D85', minHeight: 48, mr: 2, mt: 0.5 }} />
                           <Box flex={1}>
                             <Box display="flex" alignItems="center" mb={0.5}>
-                              <ChatBubbleOutlineIcon sx={{ color: '#439889', fontSize: 20, mr: 1 }} />
+                              <ChatBubbleOutlineIcon sx={{ color: '#256D85', fontSize: 20, mr: 1 }} />
                               <Typography fontWeight={700} sx={{ fontSize: 16 }}>
                                 {log.action}
                               </Typography>
@@ -298,7 +298,7 @@ export default function CaseDetails() {
                         variant="outlined" 
                         size="small"
                         onClick={() => setShowAllLogs(false)}
-                        sx={{ color: '#439889', borderColor: '#439889' }}
+                        sx={{ color: '#256D85', borderColor: '#256D85' }}
                       >
                         Show Latest Only
                       </Button>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Paper, CircularProgress, Alert, Button, TextField, GridLegacy as Grid, IconButton, Chip } from "@mui/material";
-import Sidebar from "../../components/Sidebar";
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -81,18 +80,18 @@ export default function Profile() {
 
   const getRoleColor = (role) => {
     switch (role) {
-      case "admin": return "#8b5cf6";
-      case "officer": return "#3b82f6";
+      case "admin": return "#256D85";
+      case "officer": return "#256D85";
       case "victim": return "#10b981";
-      default: return "#64748b";
+      default: return "#546e7a";
     }
   };
 
   const getRoleIcon = (role) => {
     switch (role) {
       case "admin": return <AdminPanelSettingsIcon sx={{ color: '#f97316' }} />;
-      case "officer": return <SecurityIcon sx={{ color: '#3b82f6' }} />;
-      case "victim": return <PersonIcon sx={{ color: '#8b5cf6' }} />;
+      case "officer": return <SecurityIcon sx={{ color: '#256D85' }} />;
+      case "victim": return <PersonIcon sx={{ color: '#256D85' }} />;
       default: return <PersonIcon />;
     }
   };
@@ -111,8 +110,7 @@ export default function Profile() {
   if (!profile) return null;
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <Sidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Typography variant="h4" fontWeight={700} mb={1}>Profile Settings</Typography>
@@ -140,7 +138,7 @@ export default function Profile() {
             <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
               <Typography variant="h6" fontWeight={700}>Profile Information</Typography>
               {!editMode && (
-                <Button variant="contained" startIcon={<EditIcon />} onClick={() => setEditMode(true)} sx={{ background: '#319795' }}>
+                <Button variant="contained" startIcon={<EditIcon />} onClick={() => setEditMode(true)} sx={{ background: '#174a5b' }}>
                   Edit Profile
                 </Button>
               )}
@@ -155,7 +153,7 @@ export default function Profile() {
                   onChange={handleChange}
                   fullWidth
                   margin="normal"
-                  InputProps={{ startAdornment: <PersonIcon sx={{ mr: 1, color: '#319795' }} /> }}
+                  InputProps={{ startAdornment: <PersonIcon sx={{ mr: 1, color: '#174a5b' }} /> }}
                 />
                 <TextField
                   label="Email Address"
@@ -163,7 +161,7 @@ export default function Profile() {
                   value={form.email}
                   fullWidth
                   margin="normal"
-                  InputProps={{ startAdornment: <EmailIcon sx={{ mr: 1, color: '#319795' }} /> }}
+                  InputProps={{ startAdornment: <EmailIcon sx={{ mr: 1, color: '#174a5b' }} /> }}
                   disabled
                 />
                 <TextField
@@ -173,31 +171,31 @@ export default function Profile() {
                   onChange={handleChange}
                   fullWidth
                   margin="normal"
-                  InputProps={{ startAdornment: <PhoneIcon sx={{ mr: 1, color: '#319795' }} /> }}
+                  InputProps={{ startAdornment: <PhoneIcon sx={{ mr: 1, color: '#174a5b' }} /> }}
                 />
                 <Box mt={2}>
-                  <Button variant="contained" onClick={handleSave} sx={{ mr: 2, background: '#319795' }}>Save</Button>
+                  <Button variant="contained" onClick={handleSave} sx={{ mr: 2, background: '#174a5b' }}>Save</Button>
                   <Button onClick={() => setEditMode(false)}>Cancel</Button>
                 </Box>
               </>
             ) : (
               <>
                 <Box display="flex" alignItems="center" mb={2}>
-                  <PersonIcon sx={{ mr: 1, color: '#319795' }} />
+                  <PersonIcon sx={{ mr: 1, color: '#174a5b' }} />
                   <Box>
                     <Typography fontWeight={600} fontSize={14} color="text.secondary">Full Name</Typography>
                     <Typography fontWeight={500}>{profile.name}</Typography>
                   </Box>
                 </Box>
                 <Box display="flex" alignItems="center" mb={2}>
-                  <EmailIcon sx={{ mr: 1, color: '#319795' }} />
+                  <EmailIcon sx={{ mr: 1, color: '#174a5b' }} />
                   <Box>
                     <Typography fontWeight={600} fontSize={14} color="text.secondary">Email Address</Typography>
                     <Typography fontWeight={500}>{profile.email}</Typography>
                   </Box>
                 </Box>
                 <Box display="flex" alignItems="center" mb={2}>
-                  <PhoneIcon sx={{ mr: 1, color: '#319795' }} />
+                  <PhoneIcon sx={{ mr: 1, color: '#174a5b' }} />
                   <Box>
                     <Typography fontWeight={600} fontSize={14} color="text.secondary">Phone Number</Typography>
                     <Typography fontWeight={500}>{form.phone}</Typography>
@@ -212,16 +210,16 @@ export default function Profile() {
           <Paper sx={{ p: 4, borderRadius: 3, boxShadow: 2 }}>
             <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
               <Typography variant="h6" fontWeight={700}>Security Settings</Typography>
-              <Button variant="contained" sx={{ background: '#2563eb' }} onClick={handleChangePassword}>Change Password</Button>
+              <Button variant="contained" sx={{ background: '#256D85' }} onClick={handleChangePassword}>Change Password</Button>
             </Box>
             <Box display="flex" alignItems="center" mb={2}>
-              <LockIcon sx={{ mr: 1, color: '#2563eb' }} />
+              <LockIcon sx={{ mr: 1, color: '#256D85' }} />
               <Typography fontWeight={600} fontSize={14} color="text.secondary">Password</Typography>
               <Box ml={2} sx={{ letterSpacing: 4, fontWeight: 700, fontSize: 18 }}>••••••••</Box>
             </Box>
-            <Paper sx={{ background: '#e6f0fa', p: 2, borderRadius: 2 }} elevation={0}>
-              <Typography fontWeight={600} color="#2563eb" mb={1}>Security Tips:</Typography>
-              <ul style={{ margin: 0, paddingLeft: 18, color: '#2563eb', fontSize: 15 }}>
+            <Paper sx={{ background: '#d6e6ed', p: 2, borderRadius: 2 }} elevation={0}>
+              <Typography fontWeight={600} color="#256D85" mb={1}>Security Tips:</Typography>
+              <ul style={{ margin: 0, paddingLeft: 18, color: '#256D85', fontSize: 15 }}>
                 <li>Use a strong password with at least 8 characters</li>
                 <li>Include uppercase, lowercase, numbers, and symbols</li>
                 <li>Don't share your password with anyone</li>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, GridLegacy as Grid, Paper, Button, Stack, Avatar, IconButton } from "@mui/material";
-import Sidebar from "../../components/Sidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
@@ -18,9 +17,9 @@ const statusCards = [
 ];
 
 const actionCards = [
-  { label: "Report a Crime", desc: "File a new cybercrime report", icon: <DescriptionIcon fontSize="large" />, color: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)", path: "/report_crime" },
-  { label: "View My Reports", desc: "Track your submitted reports", icon: <VisibilityIcon fontSize="large" />, color: "#f7fafc", path: "/victim_reports" },
-  { label: "Help & FAQ", desc: "Get help and support", icon: <HelpOutlineIcon fontSize="large" />, color: "#f7fafc", path: "/help" },
+  { label: "Report a Crime", desc: "File a new cybercrime report", icon: <DescriptionIcon fontSize="large" />, color: "linear-gradient(135deg, #256D85 0%, #3b8ea5 100%)", light: true, path: "/report_crime" },
+  { label: "View My Reports", desc: "Track your submitted reports", icon: <VisibilityIcon fontSize="large" />, color: "#E8F1F5", path: "/victim_reports" },
+  { label: "Help & FAQ", desc: "Get help and support", icon: <HelpOutlineIcon fontSize="large" />, color: "#E8F1F5", path: "/help" },
 ];
 
 const recentReports = [];
@@ -70,15 +69,14 @@ export default function VictimDashboard() {
   const recentReports = [...reports].sort((a, b) => (b.date_submitted || b.date || "").localeCompare(a.date_submitted || a.date || "")).slice(0, 3);
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <Sidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
       <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Top Bar */}
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: { xs: 2, md: 4 }, py: 2, background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
           <IconButton>
             <NotificationsNoneIcon />
           </IconButton>
-          <Avatar sx={{ ml: 2, bgcolor: '#4fd1c5', color: '#fff' }}>{userName[0]}</Avatar>
+          <Avatar sx={{ ml: 2, bgcolor: '#256D85', color: '#fff' }}>{userName[0]}</Avatar>
           <Typography sx={{ ml: 1, fontWeight: 500 }}>{userName}</Typography>
         </Box>
         {/* Main Content */}
@@ -102,12 +100,12 @@ export default function VictimDashboard() {
           <Grid container spacing={2} mb={4}>
             {actionCards.map((card) => (
               <Grid item xs={12} md={4} key={card.label}>
-                <Paper sx={{ p: 3, background: card.color, borderRadius: 3, cursor: 'pointer', height: { xs: 'auto', md: '100%' } }} onClick={() => navigate(card.path)}>
+                <Paper sx={{ p: 3, background: card.color, borderRadius: 3, cursor: 'pointer', height: { xs: 'auto', md: '100%' }, ...(card.light && { color: '#fff' }) }} onClick={() => navigate(card.path)}>
                   <Stack direction="row" alignItems="center" spacing={2}>
                     {card.icon}
                     <Box>
                       <Typography fontWeight={700}>{card.label}</Typography>
-                      <Typography color="text.secondary">{card.desc}</Typography>
+                      <Typography color={card.light ? "inherit" : "text.secondary"} sx={card.light ? { opacity: 0.9 } : undefined}>{card.desc}</Typography>
                     </Box>
                   </Stack>
                 </Paper>

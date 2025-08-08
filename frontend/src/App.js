@@ -26,6 +26,10 @@ import AllReports from "./pages/admin/AllReports";
 import AuditLog from "./pages/admin/AuditLog";
 import AdminProfile from "./pages/admin/AdminProfile";
 import OfficerProfile from "./pages/officer/OfficerProfile";
+import DashboardLayout from "./components/DashboardLayout";
+import VictimSidebar from "./components/Sidebar";
+import OfficerSidebar from "./components/OfficerSidebar";
+import AdminSidebar from "./components/AdminSidebar";
 
 function App() {
   return (
@@ -36,26 +40,32 @@ function App() {
         <Route path="/register/victim" element={<VictimRegister />} />
         <Route path="/register/officer" element={<OfficerRegister />} />
         <Route path="/register/admin" element={<AdminRegister />} />
-        <Route path="/victim_dashboard" element={<VictimDashboard />} />
-        <Route path="/report_crime" element={<ReportCrime />} />
-        <Route path="/victim_reports" element={<VictimReports />} />
-        <Route path="/report_details/:id" element={<ReportDetails />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/help" element={<Help />} />
-        <Route path="/officer_dashboard" element={<OfficerDashboard />} />
-        <Route path="/officer_cases" element={<OfficerCases />} />
-        <Route path="/case/:id" element={<CaseDetails />} />
-        <Route path="/case/:id/logs" element={<AddLogEntry />} />
-        <Route path="/officer/case/:id/evidence" element={<CaseEvidence />} />
-        <Route path="/officer_evidence" element={<OfficerEvidence />} />
-        <Route path="/investigation_tools" element={<InvestigationTools />} />
-        <Route path="/admin_dashboard" element={<AdminDashboard />} />
-        <Route path="/assign_officer" element={<AssignOfficer />} />
-        <Route path="/manage_users" element={<ManageUsers />} />
-        <Route path="/all_reports" element={<AllReports />} />
-        <Route path="/audit_log" element={<AuditLog />} />
-        <Route path="/admin_profile" element={<AdminProfile />} />
-        <Route path="/officer_profile" element={<OfficerProfile />} />
+        <Route element={<DashboardLayout Sidebar={VictimSidebar} />}>
+          <Route path="/victim_dashboard" element={<VictimDashboard />} />
+          <Route path="/report_crime" element={<ReportCrime />} />
+          <Route path="/victim_reports" element={<VictimReports />} />
+          <Route path="/report_details/:id" element={<ReportDetails />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/help" element={<Help />} />
+        </Route>
+        <Route element={<DashboardLayout Sidebar={OfficerSidebar} />}>
+          <Route path="/officer_dashboard" element={<OfficerDashboard />} />
+          <Route path="/officer_cases" element={<OfficerCases />} />
+          <Route path="/case/:id" element={<CaseDetails />} />
+          <Route path="/case/:id/logs" element={<AddLogEntry />} />
+          <Route path="/officer/case/:id/evidence" element={<CaseEvidence />} />
+          <Route path="/officer_evidence" element={<OfficerEvidence />} />
+          <Route path="/investigation_tools" element={<InvestigationTools />} />
+          <Route path="/officer_profile" element={<OfficerProfile />} />
+        </Route>
+        <Route element={<DashboardLayout Sidebar={AdminSidebar} />}>
+          <Route path="/admin_dashboard" element={<AdminDashboard />} />
+          <Route path="/assign_officer" element={<AssignOfficer />} />
+          <Route path="/manage_users" element={<ManageUsers />} />
+          <Route path="/all_reports" element={<AllReports />} />
+          <Route path="/audit_log" element={<AuditLog />} />
+          <Route path="/admin_profile" element={<AdminProfile />} />
+        </Route>
         <Route path="*" element={<Navigate to="/auth/login" />} />
       </Routes>
     </Router>

@@ -6,7 +6,6 @@ import {
   TableRow, Chip, IconButton, Avatar, Button, Dialog,
   DialogTitle, DialogContent, DialogActions, Alert
 } from "@mui/material";
-import AdminSidebar from "../../components/AdminSidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
@@ -113,16 +112,16 @@ export default function AuditLog() {
   const getActionColor = (action) => {
     switch (action) {
       case "Login":
-      case "User Login": return "#3b82f6";
+      case "User Login": return "#256D85";
       case "Report Submitted": return "#ef4444";
       case "Officer Assigned": return "#10b981";
-      case "User Created": return "#8b5cf6";
+      case "User Created": return "#256D85";
       case "Profile Updated": return "#f59e0b";
       case "Password Changed": return "#dc2626";
       case "User Updated": return "#059669";
       case "User Deleted": return "#dc2626";
-      case "Audit Log Reset": return "#7c3aed";
-      default: return "#64748b";
+      case "Audit Log Reset": return "#256D85";
+      default: return "#546e7a";
     }
   };
 
@@ -169,9 +168,8 @@ export default function AuditLog() {
   });
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <AdminSidebar />
-      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
@@ -241,7 +239,7 @@ export default function AuditLog() {
            )}
 
           {loading && (
-            <Box sx={{ mb: 3, p: 2, bgcolor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: 2 }}>
+            <Box sx={{ mb: 3, p: 2, bgcolor: '#d6e6ed', border: '1px solid #d6e6ed', borderRadius: 2 }}>
               <Typography color="primary">Loading audit logs...</Typography>
             </Box>
           )}
@@ -252,11 +250,11 @@ export default function AuditLog() {
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                    <Avatar sx={{ bgcolor: '#dbeafe', color: '#1e40af', width: 56, height: 56 }}>
+                    <Avatar sx={{ bgcolor: '#d6e6ed', color: '#174a5b', width: 56, height: 56 }}>
                       <HistoryIcon />
                     </Avatar>
                   </Box>
-                  <Typography variant="h3" fontWeight={700} color="#1e40af" mb={1}>
+                  <Typography variant="h3" fontWeight={700} color="#174a5b" mb={1}>
                     {stats.total}
                   </Typography>
                   <Typography variant="h6" fontWeight={600} mb={1}>
@@ -270,11 +268,11 @@ export default function AuditLog() {
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                    <Avatar sx={{ bgcolor: '#dbeafe', color: '#3b82f6', width: 56, height: 56 }}>
+                    <Avatar sx={{ bgcolor: '#d6e6ed', color: '#256D85', width: 56, height: 56 }}>
                       <SecurityIcon />
                     </Avatar>
                   </Box>
-                  <Typography variant="h3" fontWeight={700} color="#3b82f6" mb={1}>
+                  <Typography variant="h3" fontWeight={700} color="#256D85" mb={1}>
                     {stats.logins}
                   </Typography>
                   <Typography variant="h6" fontWeight={600} mb={1}>
@@ -333,7 +331,7 @@ export default function AuditLog() {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <SearchIcon sx={{ color: '#64748b' }} />
+                        <SearchIcon sx={{ color: '#546e7a' }} />
                       </InputAdornment>
                     ),
                   }}
@@ -357,7 +355,7 @@ export default function AuditLog() {
                     onChange={(e) => setActionFilter(e.target.value)}
                     startAdornment={
                       <InputAdornment position="start">
-                        <FilterListIcon sx={{ color: '#64748b' }} />
+                        <FilterListIcon sx={{ color: '#546e7a' }} />
                       </InputAdornment>
                     }
                     sx={{
@@ -390,7 +388,7 @@ export default function AuditLog() {
                     onChange={(e) => setUserFilter(e.target.value)}
                     startAdornment={
                       <InputAdornment position="start">
-                        <FilterListIcon sx={{ color: '#64748b' }} />
+                        <FilterListIcon sx={{ color: '#546e7a' }} />
                       </InputAdornment>
                     }
                     sx={{
@@ -417,19 +415,19 @@ export default function AuditLog() {
             <TableContainer>
               <Table>
                 <TableHead>
-                  <TableRow sx={{ backgroundColor: '#f8fafc' }}>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>TIMESTAMP</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>USER</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>ACTION</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>DETAILS</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>IP ADDRESS</TableCell>
-                    <TableCell sx={{ fontWeight: 600, color: '#374151' }}>STATUS</TableCell>
+                  <TableRow sx={{ backgroundColor: '#E8F1F5' }}>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>TIMESTAMP</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>USER</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>ACTION</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>DETAILS</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>IP ADDRESS</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: '#263238' }}>STATUS</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {filteredLogs.length > 0 ? (
                     filteredLogs.map((log, index) => (
-                      <TableRow key={index} sx={{ '&:hover': { backgroundColor: '#f8fafc' } }}>
+                      <TableRow key={index} sx={{ '&:hover': { backgroundColor: '#E8F1F5' } }}>
                         <TableCell>
                           <Typography variant="body2" color="text.secondary">
                             {log.timestamp || 'N/A'}

@@ -79,7 +79,7 @@ export default function AddLogEntry() {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Link to={`/case/${id}`} style={{ textDecoration: 'none', color: '#1976d2' }}>&lt; Back to Case</Link>
+      <Link to={`/case/${id}`} style={{ textDecoration: 'none', color: '#256D85' }}>&lt; Back to Case</Link>
       <Typography variant="h5" fontWeight={600} mt={2} mb={2}>Add Investigation Log</Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={8}>
@@ -123,7 +123,7 @@ export default function AddLogEntry() {
                 {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
                 {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
                 <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
-                  <Button type="submit" variant="contained" sx={{ flex: 1, background: 'linear-gradient(90deg, #3bb2f6, #0b63ce)' }}>
+                  <Button type="submit" variant="contained" sx={{ flex: 1, background: 'linear-gradient(90deg, #256D85, #256D85)' }}>
                     Save Log Entry
                   </Button>
                   <Button variant="outlined" color="inherit" onClick={() => navigate(`/case/${id}`)}>

@@ -4,7 +4,6 @@ import {
   IconButton, Chip, Stack, Divider, Table, TableHead, TableRow, TableCell, 
   TableBody, CircularProgress, Alert, Avatar, Badge
 } from "@mui/material";
-import AdminSidebar from "../../components/AdminSidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import PersonIcon from '@mui/icons-material/Person';
@@ -74,9 +73,8 @@ export default function AdminDashboard() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
-      <AdminSidebar />
-      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#E8F1F5', boxSizing: 'border-box' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
@@ -100,7 +98,7 @@ export default function AdminDashboard() {
               <HelpOutlineIcon />
             </IconButton>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Avatar sx={{ width: 32, height: 32, bgcolor: '#4fd1c5' }}>
+              <Avatar sx={{ width: 32, height: 32, bgcolor: '#256D85' }}>
                 <PersonIcon />
               </Avatar>
               <Typography variant="body2" fontWeight={500}>{adminName}</Typography>
@@ -122,9 +120,9 @@ export default function AdminDashboard() {
               <Paper sx={{ p: 3, borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box>
                   <Typography color="text.secondary" fontSize={14}>Total Reports</Typography>
-                  <Typography variant="h4" fontWeight={700} color="#2563eb">{loading ? "..." : totalReports}</Typography>
+                  <Typography variant="h4" fontWeight={700} color="#256D85">{loading ? "..." : totalReports}</Typography>
                 </Box>
-                <DescriptionIcon sx={{ color: '#2563eb', fontSize: 40 }} />
+                <DescriptionIcon sx={{ color: '#256D85', fontSize: 40 }} />
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
@@ -170,7 +168,7 @@ export default function AdminDashboard() {
                 }}
                 onClick={() => navigate("/assign_officer")}
               >
-                <CardContent sx={{ p: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white' }}>
+                <CardContent sx={{ p: 3, background: 'linear-gradient(135deg, #256D85 0%, #142B4A 100%)', color: 'white' }}>
                   <GroupIcon sx={{ fontSize: 40, mb: 2 }} />
                   <Typography variant="h6" fontWeight={700} mb={1}>Assign Officers</Typography>
                   <Typography variant="body2" sx={{ opacity: 0.9 }}>Assign cases to officers</Typography>
@@ -190,7 +188,7 @@ export default function AdminDashboard() {
                 onClick={() => navigate("/manage_users")}
               >
                 <CardContent sx={{ p: 3 }}>
-                  <GroupIcon sx={{ fontSize: 40, color: '#2563eb', mb: 2 }} />
+                  <GroupIcon sx={{ fontSize: 40, color: '#256D85', mb: 2 }} />
                   <Typography variant="h6" fontWeight={700} mb={1}>Manage Users</Typography>
                   <Typography variant="body2" color="text.secondary">View and manage all users</Typography>
                 </CardContent>
@@ -209,7 +207,7 @@ export default function AdminDashboard() {
                 onClick={() => navigate("/all_reports")}
               >
                 <CardContent sx={{ p: 3 }}>
-                  <DescriptionIcon sx={{ fontSize: 40, color: '#319795', mb: 2 }} />
+                  <DescriptionIcon sx={{ fontSize: 40, color: '#174a5b', mb: 2 }} />
                   <Typography variant="h6" fontWeight={700} mb={1}>All Reports</Typography>
                   <Typography variant="body2" color="text.secondary">View all crime reports</Typography>
                 </CardContent>

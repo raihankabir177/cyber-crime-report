@@ -123,7 +123,7 @@ export default function ReportDetails() {
   const status = statusColor(report.status);
 
   return (
-    <Box sx={{ background: '#f8fafc', minHeight: '100vh', py: 6 }}>
+    <Box sx={{ background: '#E8F1F5', minHeight: '100vh', py: 6 }}>
       <Box maxWidth={1400} mx="auto">
         <Button startIcon={<ArrowBackIcon />} sx={{ mb: 2 }} onClick={() => navigate('/victim_reports')}>Back to My Reports</Button>
         <Typography variant="h4" fontWeight={700} mb={0.5}>Report Details</Typography>
@@ -175,7 +175,7 @@ export default function ReportDetails() {
                       <ListItemIcon><UploadFileIcon /></ListItemIcon>
                       <ListItemText
                         primary={
-                          <a href={evidenceFileUrl(ev)} target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'underline' }}>{ev.original_name}</a>
+                          <a href={evidenceFileUrl(ev)} target="_blank" rel="noopener noreferrer" style={{ color: '#256D85', textDecoration: 'underline' }}>{ev.original_name}</a>
                         }
                         secondary={ev.content_type}
                       />
@@ -209,7 +209,7 @@ export default function ReportDetails() {
                 </Box>
                 {newFiles.length > 0 && (
                   <Box mt={1}>
-                    <Typography fontSize={15} color="#2563eb">{newFiles.map(f => f.name).join(", ")}</Typography>
+                    <Typography fontSize={15} color="#256D85">{newFiles.map(f => f.name).join(", ")}</Typography>
                   </Box>
                 )}
                 {uploadError && <Alert severity="error" sx={{ mt: 1 }}>{uploadError}</Alert>}
@@ -217,7 +217,7 @@ export default function ReportDetails() {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ mt: 2, background: 'linear-gradient(90deg, #2563eb 0%, #1e40af 100%)', color: '#fff', fontWeight: 700 }}
+                  sx={{ mt: 2, background: 'linear-gradient(90deg, #256D85 0%, #174a5b 100%)', color: '#fff', fontWeight: 700 }}
                   disabled={uploading}
                 >
                   Upload Evidence
@@ -246,9 +246,9 @@ export default function ReportDetails() {
                    {/* Show only the latest log initially */}
                    {!showAllLogs ? (
                      <Box>
-                       <Box sx={{ mb: 3, p: 2, border: '1px solid #e2e8f0', borderRadius: 2, background: '#f8fafc' }}>
+                       <Box sx={{ mb: 3, p: 2, border: '1px solid #e2e8f0', borderRadius: 2, background: '#E8F1F5' }}>
                          <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={1}>
-                           <Typography fontWeight={600} color="#2563eb">
+                           <Typography fontWeight={600} color="#256D85">
                              {logs[0].action}
                            </Typography>
                            <Typography variant="caption" color="text.secondary">
@@ -268,7 +268,7 @@ export default function ReportDetails() {
                              variant="outlined" 
                              size="small"
                              onClick={() => setShowAllLogs(true)}
-                             sx={{ color: '#2563eb', borderColor: '#2563eb' }}
+                             sx={{ color: '#256D85', borderColor: '#256D85' }}
                            >
                              View All {logs.length} Investigation Logs
                            </Button>
@@ -279,9 +279,9 @@ export default function ReportDetails() {
                      /* Show all logs when expanded */
                      <Box>
                        {logs.map((log, idx) => (
-                         <Box key={idx} sx={{ mb: 3, p: 2, border: '1px solid #e2e8f0', borderRadius: 2, background: '#f8fafc' }}>
+                         <Box key={idx} sx={{ mb: 3, p: 2, border: '1px solid #e2e8f0', borderRadius: 2, background: '#E8F1F5' }}>
                            <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={1}>
-                             <Typography fontWeight={600} color="#2563eb">
+                             <Typography fontWeight={600} color="#256D85">
                                {log.action}
                              </Typography>
                              <Typography variant="caption" color="text.secondary">
@@ -301,7 +301,7 @@ export default function ReportDetails() {
                            variant="outlined" 
                            size="small"
                            onClick={() => setShowAllLogs(false)}
-                           sx={{ color: '#2563eb', borderColor: '#2563eb' }}
+                           sx={{ color: '#256D85', borderColor: '#256D85' }}
                          >
                            Show Latest Only
                          </Button>
@@ -323,7 +323,7 @@ export default function ReportDetails() {
               <Typography color="text.secondary">Current Status</Typography>
               <Chip label={status.label} color={status.color} sx={{ fontWeight: 700, fontSize: 15, px: 1.5, borderRadius: 2, mt: 1 }} />
               <Typography color="text.secondary" mt={2}>Case ID</Typography>
-              <Typography fontWeight={700} color="#2563eb">#{String(report.id).padStart(3, '0')}</Typography>
+              <Typography fontWeight={700} color="#256D85">#{String(report.id).padStart(3, '0')}</Typography>
             </Paper>
             <Paper sx={{ p: 3, borderRadius: 3, mb: 3 }}>
               <Typography fontWeight={700} mb={1}>Assigned Officer</Typography>
@@ -337,7 +337,7 @@ export default function ReportDetails() {
                   <IconButton 
                     size="small"
                     onClick={() => setOfficerDetailsExpanded(!officerDetailsExpanded)}
-                    sx={{ color: '#2563eb' }}
+                    sx={{ color: '#256D85' }}
                   >
                     {officerDetailsExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                   </IconButton>
@@ -346,15 +346,15 @@ export default function ReportDetails() {
               
               {report.assigned_officer_name && (
                 <Collapse in={officerDetailsExpanded}>
-                  <Card sx={{ mt: 2, background: '#f8fafc', border: '1px solid #e2e8f0' }}>
+                  <Card sx={{ mt: 2, background: '#E8F1F5', border: '1px solid #e2e8f0' }}>
                     <CardContent sx={{ p: 2 }}>
-                      <Typography variant="subtitle2" fontWeight={600} mb={2} color="#2563eb">
+                      <Typography variant="subtitle2" fontWeight={600} mb={2} color="#256D85">
                         Officer Details
                       </Typography>
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
                           <Box display="flex" alignItems="center" gap={1} mb={1}>
-                            <EmailIcon sx={{ fontSize: 16, color: '#6b7280' }} />
+                            <EmailIcon sx={{ fontSize: 16, color: '#546e7a' }} />
                             <Typography variant="body2" fontWeight={500}>Email:</Typography>
                             <Typography variant="body2" color="text.secondary">
                               {report.assigned_officer_email || "Not available"}
@@ -363,7 +363,7 @@ export default function ReportDetails() {
                         </Grid>
                         <Grid item xs={12}>
                           <Box display="flex" alignItems="center" gap={1} mb={1}>
-                            <BadgeIcon sx={{ fontSize: 16, color: '#6b7280' }} />
+                            <BadgeIcon sx={{ fontSize: 16, color: '#546e7a' }} />
                             <Typography variant="body2" fontWeight={500}>Badge Number:</Typography>
                             <Typography variant="body2" color="text.secondary">
                               {report.badge_number || "Not available"}
@@ -372,7 +372,7 @@ export default function ReportDetails() {
                         </Grid>
                         <Grid item xs={12}>
                           <Box display="flex" alignItems="center" gap={1}>
-                            <WorkIcon sx={{ fontSize: 16, color: '#6b7280' }} />
+                            <WorkIcon sx={{ fontSize: 16, color: '#546e7a' }} />
                             <Typography variant="body2" fontWeight={500}>Specialization:</Typography>
                             <Typography variant="body2" color="text.secondary">
                               {report.specialization || "Not available"}
@@ -385,15 +385,15 @@ export default function ReportDetails() {
                 </Collapse>
               )}
             </Paper>
-            <Paper sx={{ p: 3, borderRadius: 3, background: '#e8f0fe' }}>
+            <Paper sx={{ p: 3, borderRadius: 3, background: '#d6e6ed' }}>
               <Typography fontWeight={700} mb={1}>Need Help?</Typography>
               <Typography color="text.secondary" fontSize={15} mb={1}>
                 If you have additional information or questions about this case, please contact
               </Typography>
-              <Typography fontWeight={600} color="#2563eb" fontSize={15}>Support Email:</Typography>
-              <Typography color="#2563eb" fontSize={15} mb={1}>support@cybercrime.gov</Typography>
-              <Typography fontWeight={600} color="#2563eb" fontSize={15}>Helpline:</Typography>
-              <Typography color="#2563eb" fontSize={15}>1-800-CYBER-HELP</Typography>
+              <Typography fontWeight={600} color="#256D85" fontSize={15}>Support Email:</Typography>
+              <Typography color="#256D85" fontSize={15} mb={1}>support@cybercrime.gov</Typography>
+              <Typography fontWeight={600} color="#256D85" fontSize={15}>Helpline:</Typography>
+              <Typography color="#256D85" fontSize={15}>1-800-CYBER-HELP</Typography>
             </Paper>
           </Grid>
         </Grid>

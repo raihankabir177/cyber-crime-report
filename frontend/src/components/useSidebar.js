@@ -4,6 +4,7 @@ import { useMediaQuery } from "@mui/material";
 /** Below this width the sidebar becomes a slide-out menu opened from the top bar. */
 export const MOBILE_QUERY = "(max-width:1023.95px)";
 export const TOPBAR_HEIGHT = 56;
+export const COLLAPSED_WIDTH = 72;
 
 const STORAGE_KEY = "sidebarCollapsed";
 
@@ -37,13 +38,15 @@ export function useSidebar(width) {
     });
   }, []);
 
-  const hidden = isMobile || collapsed;
+  // The sidebar is only hidden on mobile; on desktop it shrinks to an icon rail.
+  const hidden = isMobile;
+  const sidebarW = isMobile ? 0 : collapsed ? COLLAPSED_WIDTH : width;
 
   useLayoutEffect(() => {
     const root = document.documentElement.style;
-    root.setProperty("--sidebar-w", hidden ? "0px" : `${width}px`);
+    root.setProperty("--sidebar-w", `${sidebarW}px`);
     root.setProperty("--topbar-h", hidden ? `${TOPBAR_HEIGHT}px` : "0px");
-  }, [hidden, width]);
+  }, [hidden, sidebarW]);
 
   return { isMobile, collapsed, hidden, open, setOpen, toggleCollapsed };
 }
