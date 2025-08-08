@@ -39,13 +39,22 @@ victimRouter.post(
 
       let evidenceCount = 0;
       if (files.length > 0) {
-        const saved = await saveEvidenceFiles(
-          report.id,
-          victimId,
-          files,
-          "Evidence uploaded with report"
-        );
-        evidenceCount = saved.length;
+        try {
+          const saved = await saveEvidenceFiles(
+            report.id,
+            victimId,
+            files,
+            "Evidence uploaded with report"
+          );
+          evidenceCount = saved.length;
+        } catch (uploadError) {
+          // Don't leave a half-created report behind (a retry would duplicate it).
+          console.error("Evidence upload failed, rolling back report:", uploadError);
+          await prisma.report.delete({ where: { id: report.id } }).catch(() => {});
+          return res.status(502).json({
+            error: "Evidence upload failed. Your report was not submitted; please try again.",
+          });
+        }
       }
 
       await onReportSubmitted(report.id, victimId);

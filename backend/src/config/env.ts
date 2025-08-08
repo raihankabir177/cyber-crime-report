@@ -54,9 +54,10 @@ export const env = {
   // Admin self-registration is disabled unless this code is set and matched.
   adminSignupCode: process.env.ADMIN_SIGNUP_CODE || "",
   cloudinary: {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME || "",
-    apiKey: process.env.CLOUDINARY_API_KEY || "",
-    apiSecret: process.env.CLOUDINARY_API_SECRET || "",
+    // trim: stray spaces/newlines pasted into a dashboard break the signature
+    cloudName: (process.env.CLOUDINARY_CLOUD_NAME || "").trim(),
+    apiKey: (process.env.CLOUDINARY_API_KEY || "").trim(),
+    apiSecret: (process.env.CLOUDINARY_API_SECRET || "").trim(),
   },
 };
 
