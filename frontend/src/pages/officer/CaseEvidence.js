@@ -12,6 +12,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import ImageIcon from '@mui/icons-material/Image';
 import DescriptionIcon from '@mui/icons-material/Description';
 import OfficerSidebar from "../../components/OfficerSidebar";
+import { evidenceFileUrl, apiFetch } from "../../utils/api";
 
 export default function CaseEvidence() {
   const { id } = useParams();
@@ -29,7 +30,7 @@ export default function CaseEvidence() {
   useEffect(() => {
     setLoading(true);
     // Fetch case info
-    fetch(`http://localhost:5000/officer/case/${id}`, {
+    apiFetch(`/officer/case/${id}`, {
       method: "GET",
       credentials: "include"
     })
@@ -46,7 +47,7 @@ export default function CaseEvidence() {
       });
 
     // Fetch evidence
-    fetch(`http://localhost:5000/officer/case/${id}/evidence`, {
+    apiFetch(`/officer/case/${id}/evidence`, {
       method: "GET",
       credentials: "include"
     })
@@ -84,7 +85,7 @@ export default function CaseEvidence() {
     const formData = new FormData();
     files.forEach(file => formData.append("files", file));
     try {
-      const res = await fetch(`http://localhost:5000/officer/case/${id}/evidence`, {
+      const res = await apiFetch(`/officer/case/${id}/evidence`, {
         method: "POST",
         body: formData,
         credentials: "include"
@@ -108,7 +109,7 @@ export default function CaseEvidence() {
 
   const fetchEvidence = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/officer/case/${id}/evidence`, {
+      const res = await apiFetch(`/officer/case/${id}/evidence`, {
         method: "GET",
         credentials: "include"
       });
@@ -253,7 +254,7 @@ export default function CaseEvidence() {
                         />
                         <Box sx={{ display: 'flex', gap: 1 }}>
                           <IconButton 
-                            href={`http://localhost:5000/uploads/${ev.filename}`} 
+                            href={evidenceFileUrl(ev)} 
                             target="_blank" 
                             rel="noopener noreferrer"
                             size="small"
@@ -261,7 +262,7 @@ export default function CaseEvidence() {
                             <VisibilityIcon />
                           </IconButton>
                           <IconButton 
-                            href={`http://localhost:5000/uploads/${ev.filename}`} 
+                            href={evidenceFileUrl(ev)} 
                             target="_blank" 
                             rel="noopener noreferrer"
                             size="small"

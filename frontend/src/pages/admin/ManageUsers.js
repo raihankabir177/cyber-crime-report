@@ -16,6 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SecurityIcon from '@mui/icons-material/Security';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import GroupIcon from '@mui/icons-material/Group';
+import { apiFetch } from "../../utils/api";
 
 export default function ManageUsers() {
   const adminName = sessionStorage.getItem("userName") || "Admin User";
@@ -58,7 +59,7 @@ export default function ManageUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/admin/users', {
+        const response = await apiFetch('/admin/users', {
           credentials: 'include'
         });
         
@@ -130,7 +131,7 @@ export default function ManageUsers() {
   // Handle save edit
   const handleSaveEdit = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/admin/users/${editingUser.id}`, {
+      const response = await apiFetch(`/admin/users/${editingUser.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -174,7 +175,7 @@ export default function ManageUsers() {
   // Handle confirm delete
   const handleConfirmDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/admin/users/${deletingUser.id}`, {
+      const response = await apiFetch(`/admin/users/${deletingUser.id}`, {
         method: 'DELETE',
         credentials: 'include'
       });

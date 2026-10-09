@@ -16,6 +16,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import ReportIcon from '@mui/icons-material/Report';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { apiFetch } from "../../utils/api";
 
 export default function AllReports() {
   const adminName = sessionStorage.getItem("userName") || "Admin User";
@@ -36,7 +37,7 @@ export default function AllReports() {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await fetch('http://localhost:5000/admin/all_reports', {
+        const response = await apiFetch('/admin/all_reports', {
           credentials: 'include'
         });
         

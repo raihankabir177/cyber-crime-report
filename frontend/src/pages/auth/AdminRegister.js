@@ -9,6 +9,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 export default function AdminRegister() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", adminCode: "", position: "", password: "", confirmPassword: "" });
@@ -28,7 +29,7 @@ export default function AdminRegister() {
       return;
     }
     try {
-      const res = await fetch("http://localhost:5000/auth/signup", {
+      const res = await apiFetch("/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

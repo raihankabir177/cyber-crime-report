@@ -1,12 +1,26 @@
 # Ignore node modules and cache folders
 node_modules/
+backend/node_modules/
 frontend/node_modules/
 frontend/.cache/
 backend/__pycache__/
 *.pyc
+backend/venv/
+backend/uploads/
 
-# Optional: Ignore logs, env files, build folders
+# Ignore logs, env files, build folders
 *.log
 .env
+.env.*
+.env.local
+.env.production
+!.env.example
+!**/.env.example
 build/
 dist/
+backend/dist/
+
+
+
+# Vercel
+.vercel/

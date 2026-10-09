@@ -11,6 +11,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 const crimeTypes = [
   "Hacking", "Scam", "Cyberbullying", "Phishing", "Other"
@@ -84,7 +85,7 @@ export default function ReportCrime() {
     formData.append("description", form.description);
     form.files.forEach(file => formData.append("files", file));
     try {
-      const res = await fetch("http://localhost:5000/victim/report", {
+      const res = await apiFetch("/victim/report", {
         method: "POST",
         body: formData,
         credentials: "include"

@@ -5,6 +5,7 @@ import {
 import { useParams, useNavigate } from "react-router-dom";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { evidenceFileUrl, apiFetch } from "../../utils/api";
 
 export default function CaseDetails() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ export default function CaseDetails() {
   const fetchCaseData = () => {
     console.log('Fetching case details for ID:', id);
     // Fetch case details
-    fetch(`http://localhost:5000/officer/case/${id}`, {
+    apiFetch(`/officer/case/${id}`, {
       credentials: "include"
     })
       .then(async res => {
@@ -47,7 +48,7 @@ export default function CaseDetails() {
       });
 
     // Fetch evidence
-    fetch(`http://localhost:5000/officer/case/${id}/evidence`, {
+    apiFetch(`/officer/case/${id}/evidence`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -59,7 +60,7 @@ export default function CaseDetails() {
       .catch(err => console.error("Failed to fetch evidence:", err));
 
     // Fetch logs
-    fetch(`http://localhost:5000/officer/case/${id}/logs`, {
+    apiFetch(`/officer/case/${id}/logs`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -78,7 +79,7 @@ export default function CaseDetails() {
   }, [id]);
 
   const refreshEvidence = () => {
-    fetch(`http://localhost:5000/officer/case/${id}/evidence`, {
+    apiFetch(`/officer/case/${id}/evidence`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -92,7 +93,7 @@ export default function CaseDetails() {
 
   const refreshLogs = () => {
     console.log('Refreshing logs for case:', id);
-    fetch(`http://localhost:5000/officer/case/${id}/logs`, {
+    apiFetch(`/officer/case/${id}/logs`, {
       credentials: "include"
     })
       .then(res => {
@@ -112,7 +113,7 @@ export default function CaseDetails() {
   const handleStatusChange = async (e) => {
     setStatus(e.target.value);
     try {
-      const res = await fetch(`http://localhost:5000/officer/case/${id}`, {
+      const res = await apiFetch(`/officer/case/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: e.target.value }),
@@ -210,7 +211,7 @@ export default function CaseDetails() {
                 {evidence.map((ev, idx) => (
                   <ListItem key={idx}>
                     <ListItemText
-                      primary={<MuiLink href={`http://localhost:5000/uploads/${ev.filename}`} target="_blank" rel="noopener">{ev.original_name}</MuiLink>}
+                      primary={<MuiLink href={evidenceFileUrl(ev)} target="_blank" rel="noopener">{ev.original_name}</MuiLink>}
                       secondary={`Type: ${ev.content_type}`}
                     />
                   </ListItem>

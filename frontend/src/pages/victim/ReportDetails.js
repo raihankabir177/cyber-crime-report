@@ -13,6 +13,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import DownloadIcon from '@mui/icons-material/Download';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { evidenceFileUrl, apiFetch } from "../../utils/api";
 import EmailIcon from '@mui/icons-material/Email';
 import BadgeIcon from '@mui/icons-material/Badge';
 import WorkIcon from '@mui/icons-material/Work';
@@ -42,7 +43,7 @@ export default function ReportDetails() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/victim/report/${id}`, {
+    apiFetch(`/victim/report/${id}`, {
       method: "GET",
       credentials: "include"
     })
@@ -65,7 +66,7 @@ export default function ReportDetails() {
   const fetchInvestigationLogs = async () => {
     setLogsLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/victim/report/${id}/logs`, {
+      const res = await apiFetch(`/victim/report/${id}/logs`, {
         credentials: "include"
       });
       const data = await res.json();
@@ -96,7 +97,7 @@ export default function ReportDetails() {
     const formData = new FormData();
     newFiles.forEach(file => formData.append("files", file));
     try {
-      const res = await fetch(`http://localhost:5000/victim/report/${id}/evidence`, {
+      const res = await apiFetch(`/victim/report/${id}/evidence`, {
         method: "POST",
         body: formData,
         credentials: "include"
@@ -174,11 +175,11 @@ export default function ReportDetails() {
                       <ListItemIcon><UploadFileIcon /></ListItemIcon>
                       <ListItemText
                         primary={
-                          <a href={`http://localhost:5000/uploads/${ev.filename}`} target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'underline' }}>{ev.original_name}</a>
+                          <a href={evidenceFileUrl(ev)} target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'underline' }}>{ev.original_name}</a>
                         }
                         secondary={ev.content_type}
                       />
-                      <IconButton href={`http://localhost:5000/uploads/${ev.filename}`} target="_blank" rel="noopener noreferrer">
+                      <IconButton href={evidenceFileUrl(ev)} target="_blank" rel="noopener noreferrer">
                         <DownloadIcon />
                       </IconButton>
                     </ListItem>

@@ -18,6 +18,7 @@ import ReportIcon from '@mui/icons-material/Report';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import { apiFetch } from "../../utils/api";
 
 export default function AuditLog() {
   const adminName = sessionStorage.getItem("userName") || "Admin User";
@@ -40,7 +41,7 @@ export default function AuditLog() {
   // Fetch audit logs function
   const fetchAuditLogs = async () => {
     try {
-      const response = await fetch('http://localhost:5000/admin/audit_logs', {
+      const response = await apiFetch('/admin/audit_logs', {
         credentials: 'include'
       });
       
@@ -66,7 +67,7 @@ export default function AuditLog() {
   const handleResetAuditLogs = async () => {
     setResetLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/admin/audit_logs/reset', {
+      const response = await apiFetch('/admin/audit_logs/reset', {
         method: 'DELETE',
         credentials: 'include'
       });

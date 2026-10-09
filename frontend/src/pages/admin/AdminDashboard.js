@@ -18,6 +18,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { useNavigate } from "react-router-dom";
 import { useSessionStorage } from "../../utils/useSessionStorage";
+import { apiFetch } from "../../utils/api";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/admin/all_reports", {
+    apiFetch("/admin/all_reports", {
       method: "GET",
       credentials: "include"
     })

@@ -9,6 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import SecurityIcon from '@mui/icons-material/Security';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 export default function Profile() {
   const [profile, setProfile] = useState(null);
@@ -22,7 +23,7 @@ export default function Profile() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/profile", {
+    apiFetch("/profile", {
       method: "GET",
       credentials: "include"
     })
@@ -52,7 +53,7 @@ export default function Profile() {
   const handleSave = async () => {
     setError(""); setSuccess("");
     try {
-      const res = await fetch("http://localhost:5000/profile", {
+      const res = await apiFetch("/profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: form.name, phone: form.phone }),

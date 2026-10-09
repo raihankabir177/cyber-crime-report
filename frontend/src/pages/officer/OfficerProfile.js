@@ -25,6 +25,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { apiFetch } from "../../utils/api";
 
 export default function OfficerProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -52,7 +53,7 @@ export default function OfficerProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://localhost:5000/profile", {
+        const response = await apiFetch("/profile", {
           method: "GET",
           credentials: "include"
         });
@@ -82,7 +83,7 @@ export default function OfficerProfile() {
 
           // Fetch case statistics
           try {
-            const statsResponse = await fetch("http://localhost:5000/profile/stats", {
+            const statsResponse = await apiFetch("/profile/stats", {
               credentials: "include"
             });
 
@@ -147,7 +148,7 @@ export default function OfficerProfile() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/profile", {
+      const response = await apiFetch("/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

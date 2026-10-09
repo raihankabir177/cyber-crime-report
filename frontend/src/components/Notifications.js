@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Badge, IconButton, Menu, MenuItem, ListItemText, Typography, Box, Tooltip, CircularProgress } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { fetchWithAuth } from "../utils/auth";
+import { apiFetch } from "../utils/api";
 
 export default function Notifications() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -15,7 +15,7 @@ export default function Notifications() {
   const fetchNotifications = async () => {
     setLoading(true);
     try {
-      const res = await fetchWithAuth("http://localhost:5000/notifications");
+      const res = await apiFetch("/notifications");
       const data = await res.json();
       setNotifications(data.notifications || []);
     } catch {
@@ -39,7 +39,7 @@ export default function Notifications() {
   const handleMarkRead = async (ids) => {
     setMarking(true);
     try {
-      await fetchWithAuth("http://localhost:5000/notifications/mark-read", {
+      await apiFetch("/notifications/mark-read", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ notification_ids: ids })

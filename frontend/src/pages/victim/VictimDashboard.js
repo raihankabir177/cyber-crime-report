@@ -9,6 +9,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 const statusCards = [
   { label: "Open Reports", value: 0, color: "#fff5f5", icon: <WarningAmberIcon sx={{ color: '#e53e3e' }} />, textColor: '#e53e3e' },
@@ -35,7 +36,7 @@ export default function VictimDashboard() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/victim/reports", {
+    apiFetch("/victim/reports", {
       method: "GET",
       credentials: "include"
     })

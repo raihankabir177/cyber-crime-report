@@ -8,6 +8,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 export default function VictimRegister() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", nid: "", password: "", confirmPassword: "" });
@@ -27,7 +28,7 @@ export default function VictimRegister() {
       return;
     }
     try {
-      const res = await fetch("http://localhost:5000/auth/signup", {
+      const res = await apiFetch("/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
   Box, Button, Card, CardContent, Typography, TextField, MenuItem, Select, InputLabel, FormControl, Grid, Paper, Alert
 } from '@mui/material';
+import { apiFetch } from "../../utils/api";
 
 const ACTIONS = [
   'Interview Conducted',
@@ -32,7 +33,7 @@ export default function AddLogEntry() {
   const [success, setSuccess] = useState('');
 
   useEffect(() => {
-    fetch(`http://localhost:5000/officer/case/${id}`, {
+    apiFetch(`/officer/case/${id}`, {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -54,7 +55,7 @@ export default function AddLogEntry() {
     console.log('Submitting log entry:', payload);
     
     try {
-      const res = await fetch(`http://localhost:5000/officer/case/${id}/logs`, {
+      const res = await apiFetch(`/officer/case/${id}/logs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

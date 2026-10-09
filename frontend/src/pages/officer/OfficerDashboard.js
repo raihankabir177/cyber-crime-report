@@ -9,6 +9,7 @@ import ShieldIcon from '@mui/icons-material/Shield';
 import DescriptionIcon from '@mui/icons-material/Description';
 import FolderIcon from '@mui/icons-material/Folder';
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 export default function OfficerDashboard() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function OfficerDashboard() {
   useEffect(() => {
     setLoading(true);
     console.log('Fetching officer cases from dashboard...');
-    fetch("http://localhost:5000/officer/assigned_cases", {
+    apiFetch("/officer/assigned_cases", {
       method: "GET",
       credentials: "include"
     })

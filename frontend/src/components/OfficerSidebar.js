@@ -5,6 +5,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import FolderIcon from '@mui/icons-material/Folder';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { logout } from "../utils/api";
 import DescriptionIcon from '@mui/icons-material/Description';
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -23,9 +24,9 @@ export default function OfficerSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNav = (item) => {
+  const handleNav = async (item) => {
     if (item.logout) {
-      // Clear session or token if needed
+      await logout();
       navigate(item.path);
     } else {
       navigate(item.path);

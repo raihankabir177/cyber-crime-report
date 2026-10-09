@@ -24,6 +24,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { apiFetch } from "../../utils/api";
 
 export default function AdminProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -63,7 +64,7 @@ export default function AdminProfile() {
     setSuccess("");
 
     try {
-      const response = await fetch("http://localhost:5000/profile", {
+      const response = await apiFetch("/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

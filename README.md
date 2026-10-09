@@ -8,14 +8,14 @@ A comprehensive, full-stack web application designed to streamline the process o
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
+- [Local Development](#local-development)
+- [Deploying to Vercel](#deploying-to-vercel)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
 - [Database Schema](#database-schema)
 - [User Roles](#user-roles)
 - [Security Features](#security-features)
+- [Development Notes](#development-notes)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -60,188 +60,107 @@ The Cyber Crime Report Management System is a modern web application that facili
 
 ## 🛠️ Technology Stack
 
-### Frontend
-- **React 18.2.0** - Modern UI library for building interactive interfaces
-- **React Router DOM 6.3.0** - Client-side routing and navigation
-- **Material-UI (MUI) 7.2.0** - Comprehensive component library for modern design
-- **Emotion** - CSS-in-JS styling solution
-- **React Scripts 5.0.1** - Build tools and development server
-
-### Backend
-- **Python 3.x** - Programming language
-- **Flask 2.3.3** - Lightweight web framework
-- **Flask-CORS 4.0.0** - Cross-Origin Resource Sharing support
-- **MySQL Connector Python 8.1.0** - Database connectivity
-- **Werkzeug 2.3.7** - WSGI utilities and security features
-
-### Database
-- **MySQL** - Relational database management system
-- **Stored Procedures** - Database-level business logic
-- **Triggers** - Automated audit logging
-- **Views** - Optimized data access patterns
+| Layer | Tech |
+|---|---|
+| Frontend | React 18 (Create React App), Material-UI 7, React Router 6 |
+| Backend | Node.js 20+, Express 4, TypeScript, Prisma ORM |
+| Database | PostgreSQL ([Neon](https://neon.tech)); sessions stored in Postgres via `connect-pg-simple` |
+| File storage | [Cloudinary](https://cloudinary.com) (evidence uploads) |
+| Hosting | Vercel (frontend and backend as two separate projects) |
 
 ## 📁 Project Structure
 
 ```
-Cyber_Crime_Report-main/
+Cyber_Crime_Report/
 ├── backend/
-│   ├── app.py                 # Main Flask application and API routes
-│   ├── database_schema.sql    # Database schema and initialization
-│   ├── init_database.py       # Database initialization script
-│   ├── requirements.txt       # Python dependencies
-│   └── uploads/               # Evidence file storage directory
-│
-├── frontend/
-│   ├── public/
-│   │   └── index.html         # HTML template
+│   ├── api/index.js          # Vercel serverless entry (wraps the compiled Express app)
+│   ├── prisma/               # schema.prisma + migrations
 │   ├── src/
-│   │   ├── components/        # Reusable React components
-│   │   │   ├── AdminSidebar.js
-│   │   │   ├── Navbar.js
-│   │   │   ├── Notifications.js
-│   │   │   ├── OfficerSidebar.js
-│   │   │   ├── ProtectedRoute.js
-│   │   │   └── Sidebar.js
-│   │   ├── contexts/          # React context providers
-│   │   │   └── AuthContext.js
-│   │   ├── pages/             # Page components
-│   │   │   ├── admin/         # Admin-specific pages
-│   │   │   ├── auth/          # Authentication pages
-│   │   │   ├── officer/       # Officer-specific pages
-│   │   │   └── victim/        # Victim-specific pages
-│   │   ├── utils/             # Utility functions
-│   │   │   ├── auth.js
-│   │   │   └── useSessionStorage.js
-│   │   ├── App.js             # Main application component
-│   │   └── index.js           # Application entry point
-│   ├── package.json           # Node.js dependencies
-│   └── package-lock.json      # Dependency lock file
-│
-└── README.md                  # Project documentation
+│   │   ├── index.ts          # Long-running server entry (local / Render / Railway)
+│   │   ├── app.ts            # Express app: security, CORS, sessions, routes
+│   │   ├── config/env.ts     # Environment loading + validation
+│   │   ├── routes/           # auth, profile, victim, officer, admin, misc
+│   │   ├── middleware/       # auth guards, upload (multer)
+│   │   └── services/         # audit, cloudinary, reports, evidence
+│   ├── vercel.json
+│   └── .env.example
+├── frontend/
+│   ├── src/
+│   │   ├── utils/api.js      # API_BASE + apiFetch() — every backend call goes through here
+│   │   ├── pages/            # admin/, officer/, victim/, auth/
+│   │   └── components/
+│   ├── vercel.json           # SPA rewrites + security headers
+│   └── .env.example
+└── legacy/flask-backend/     # Old Flask + MySQL backend (not used)
 ```
 
-## 📦 Prerequisites
+## 🚀 Local Development
 
-Before installing and running the application, ensure you have the following installed:
-
-- **Node.js** (v14.0.0 or higher) and **npm** (v6.0.0 or higher)
-- **Python** (v3.8 or higher)
-- **MySQL** (v8.0 or higher)
-- **Git** (for cloning the repository)
-
-## 🚀 Installation
-
-### Step 1: Clone the Repository
+**Prerequisites:** Node.js 20+, a Neon (or any PostgreSQL) database, a Cloudinary account.
 
 ```bash
-git clone <repository-url>
-cd Cyber_Crime_Report-main/Cyber_Crime_Report-main
-```
-
-### Step 2: Backend Setup
-
-1. Navigate to the backend directory:
-```bash
+# 1. Backend
 cd backend
-```
+cp .env.example .env          # fill in DATABASE_URL, CLOUDINARY_*, etc.
+npm install                   # also runs `prisma generate`
+npx prisma migrate deploy     # create tables
+npm run dev                   # http://localhost:5000
 
-2. Create a virtual environment (recommended):
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# Linux/Mac
-python3 -m venv venv
-source venv/bin/activate
-```
-
-3. Install Python dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-### Step 3: Database Setup
-
-1. Start your MySQL server
-
-2. Create the database and initialize schema:
-```bash
-# Option 1: Using MySQL command line
-mysql -u root -p < database_schema.sql
-
-# Option 2: Using Python script
-python init_database.py
-```
-
-3. Verify database connection by accessing the test endpoint after starting the server
-
-### Step 4: Frontend Setup
-
-1. Navigate to the frontend directory:
-```bash
-cd ../frontend
-```
-
-2. Install Node.js dependencies:
-```bash
+# 2. Frontend (new terminal)
+cd frontend
+cp .env.example .env          # REACT_APP_API_URL=http://localhost:5000
 npm install
+npm start                     # http://localhost:3000
 ```
 
-## ⚙️ Configuration
+Health check: `curl http://localhost:5000/health`
 
-### Backend Configuration
+## ☁️ Deploying to Vercel
 
-Edit `backend/app.py` to configure database connection:
+Create **two Vercel projects** from this repo.
 
-```python
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'your_password'
-app.config['MYSQL_DB'] = 'cybercrime_db'
-```
+### 1. Backend project
+- **Root Directory:** `backend` (Framework preset: *Other*; `vercel.json` sets everything else)
+- **Environment variables:**
 
-**Important**: Update the secret key for production:
-```python
-app.secret_key = 'your_secret_key_here'  # Change this to a secure random string
-```
+| Variable | Value |
+|---|---|
+| `NODE_ENV` | `production` |
+| `DATABASE_URL` | Neon **pooled** connection string |
+| `SECRET_KEY` | random 32+ chars: `node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"` |
+| `CORS_ORIGINS` | your frontend URL, e.g. `https://your-app.vercel.app` (comma-separate several, no trailing slash) |
+| `CLOUDINARY_CLOUD_NAME` / `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` | from Cloudinary |
+| `ADMIN_SIGNUP_CODE` | *(optional)* secret code required to register an admin; leave unset to disable admin sign-up |
+| `MAX_UPLOAD_MB` | *(optional)* defaults to 4 on Vercel (platform body limit is 4.5 MB) |
 
-### Frontend Configuration
+- Run migrations against production once (and after every schema change):
+  ```bash
+  cd backend && DATABASE_URL="<neon-url>" npx prisma migrate deploy
+  ```
+- Verify: `https://<backend>.vercel.app/health` → `{"status":"ok"}`
 
-The frontend is configured to proxy API requests to `http://localhost:5000` (as defined in `package.json`). If your backend runs on a different port, update the proxy setting.
+### 2. Frontend project
+- **Root Directory:** `frontend` (preset: *Create React App*)
+- **Environment variable:** `REACT_APP_API_URL=https://<backend>.vercel.app`
+  (baked in at build time — redeploy after changing it)
+
+### 3. Wire them together
+Put the frontend's final URL into the backend's `CORS_ORIGINS` and redeploy the backend.
+Login uses a cross-site cookie (`SameSite=None; Secure`), so both must be served over HTTPS.
+
+> **Alternative:** the backend can also run as a normal server (Render, Railway, Fly.io):
+> build `npm install && npm run build`, start `npm start`.
 
 ## 🎮 Usage
 
-### Starting the Application
-
-1. **Start the Backend Server**:
-```bash
-cd backend
-python app.py
-```
-The backend server will start on `http://localhost:5000`
-
-2. **Start the Frontend Development Server**:
-```bash
-cd frontend
-npm start
-```
-The frontend application will open in your browser at `http://localhost:3000`
-
-### Accessing the Application
-
-1. Navigate to `http://localhost:3000` in your web browser
-2. Register a new account by selecting your role (Victim, Officer, or Admin)
-3. Log in with your credentials
-4. Start using the application based on your role
-
 ### Default Routes
 
-- **Login**: `/auth/login`
-- **Registration**: `/register`
-- **Victim Dashboard**: `/victim_dashboard`
-- **Officer Dashboard**: `/officer_dashboard`
-- **Admin Dashboard**: `/admin_dashboard`
+- `/` - Role selection page
+- `/login` - Login page
+- `/victim/dashboard` - Victim dashboard
+- `/officer/dashboard` - Officer dashboard
+- `/admin/dashboard` - Admin dashboard
+
 
 ## 📡 API Documentation
 
@@ -283,27 +202,21 @@ The frontend application will open in your browser at `http://localhost:3000`
 
 ### Utility Endpoints
 
-- `GET /test_db` - Test database connection
-- `GET /uploads/<filename>` - Access uploaded files
+- `GET /health` - Liveness check
+- `GET /test_db` - Database connectivity check (development only)
 
 ## 🗄️ Database Schema
 
-The database consists of the following main tables:
+Defined in [`backend/prisma/schema.prisma`](backend/prisma/schema.prisma), managed with Prisma migrations:
 
 - **users** - User accounts and authentication
-- **victims** - Victim-specific information
-- **officers** - Officer details and credentials
-- **admins** - Administrator information
+- **victims** / **officers** / **admins** - Role-specific profile data
 - **reports** - Crime reports and case information
-- **evidence** - Evidence files and metadata
+- **evidence** - Evidence metadata (files live in Cloudinary)
 - **case_logs** - Investigation logs and notes
 - **audit_logs** - System activity audit trail
+- **session** - Login sessions (created automatically)
 
-The schema includes:
-- **Stored Procedures** for complex operations
-- **Triggers** for automated audit logging
-- **Views** for optimized data access
-- **Foreign Key Constraints** for data integrity
 
 ## 👥 User Roles
 
@@ -332,29 +245,23 @@ The schema includes:
 
 ## 🔒 Security Features
 
-- **Password Hashing**: All passwords are hashed using Werkzeug's security utilities
-- **Session Management**: Secure session-based authentication
-- **Role-Based Access Control**: Route and API protection based on user roles
-- **CORS Configuration**: Properly configured Cross-Origin Resource Sharing
-- **File Upload Security**: Secure filename handling and validation
-- **SQL Injection Prevention**: Parameterized queries for all database operations
-- **Audit Logging**: Comprehensive logging of all system activities
-- **Input Validation**: Server-side validation for all user inputs
-
-## 🧪 Testing
-
-To test the database connection:
-```bash
-curl http://localhost:5000/test_db
-```
+- **Password hashing** with PBKDF2-SHA256 (600k iterations; compatible with legacy Werkzeug hashes)
+- **Cookie sessions** stored in Postgres — `HttpOnly`, `Secure`, `SameSite=None` in production; session ID regenerated on login
+- **Role-based access control** on every API route
+- **Strict CORS** allow-list via `CORS_ORIGINS`
+- **Security headers** via Helmet (backend) and `vercel.json` (frontend)
+- **Rate limiting** on login and sign-up (20 requests / 15 min per IP)
+- **Admin sign-up gated** by `ADMIN_SIGNUP_CODE`
+- **Upload size limits** and in-memory streaming to Cloudinary (no local disk)
+- **No internal error details** leaked in production responses
+- **Audit logging** of significant actions
 
 ## 📝 Development Notes
 
-- The application uses Flask sessions for authentication
-- File uploads are stored in the `backend/uploads/` directory
-- All database operations use parameterized queries
-- The frontend uses React Context for state management
-- Protected routes are implemented using React Router
+- Sessions live in the `session` table in Postgres, so they survive restarts and work on serverless
+- All frontend API calls go through `apiFetch()` in `frontend/src/utils/api.js`
+- The frontend uses React Context for auth state; protected routes use React Router
+
 
 ## 🤝 Contributing
 
@@ -387,7 +294,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🙏 Acknowledgments
 
 - Material-UI for the comprehensive component library
-- Flask community for excellent documentation
+- Express, Prisma and Neon communities for excellent documentation
 - React team for the powerful framework
 - All contributors who have helped improve this project
 

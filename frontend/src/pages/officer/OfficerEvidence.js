@@ -13,6 +13,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import ArchiveIcon from '@mui/icons-material/Archive';
+import { evidenceFileUrl, apiFetch } from "../../utils/api";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PersonIcon from '@mui/icons-material/Person';
 
@@ -27,7 +28,7 @@ export default function OfficerEvidence() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/officer/all_evidence", { method: "GET", credentials: "include" })
+    apiFetch("/officer/all_evidence", { method: "GET", credentials: "include" })
       .then(async res => {
         if (!res.ok) throw new Error((await res.json()).error || "Failed to fetch evidence");
         return res.json();
@@ -355,7 +356,7 @@ export default function OfficerEvidence() {
                       <Box sx={{ display: 'flex', gap: 1 }}>
                         <IconButton 
                           size="small"
-                          href={`http://localhost:5000/uploads/${ev.filename}`} 
+                          href={evidenceFileUrl(ev)} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           sx={{ color: '#6b7280' }}
@@ -364,7 +365,7 @@ export default function OfficerEvidence() {
                         </IconButton>
                         <IconButton 
                           size="small"
-                          href={`http://localhost:5000/uploads/${ev.filename}`} 
+                          href={evidenceFileUrl(ev)} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           sx={{ color: '#6b7280' }}

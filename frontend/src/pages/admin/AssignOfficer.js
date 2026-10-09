@@ -17,6 +17,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import GroupIcon from '@mui/icons-material/Group';
 import SecurityIcon from '@mui/icons-material/Security';
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 export default function AssignOfficer() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function AssignOfficer() {
   useEffect(() => {
     setLoading(true);
     // Fetch unassigned reports
-    fetch("http://localhost:5000/admin/all_reports", {
+    apiFetch("/admin/all_reports", {
       credentials: "include"
     })
       .then(res => res.json())
@@ -45,7 +46,7 @@ export default function AssignOfficer() {
       .catch(err => console.error("Failed to fetch reports:", err));
 
     // Fetch available officers
-    fetch("http://localhost:5000/admin/available_officers", {
+    apiFetch("/admin/available_officers", {
       credentials: "include"
     })
       .then(res => res.json())
@@ -69,7 +70,7 @@ export default function AssignOfficer() {
     }
     
     try {
-      const res = await fetch("http://localhost:5000/admin/assign", {
+      const res = await apiFetch("/admin/assign", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -83,7 +84,7 @@ export default function AssignOfficer() {
       if (res.ok) {
         setSuccess("Officer assigned successfully!");
         // Refresh the reports list
-        fetch("http://localhost:5000/admin/all_reports", {
+        apiFetch("/admin/all_reports", {
           credentials: "include"
         })
           .then(res => res.json())

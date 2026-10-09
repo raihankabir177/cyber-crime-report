@@ -5,6 +5,7 @@ import {
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSessionStorage } from "../utils/useSessionStorage";
+import { logout } from "../utils/api";
 import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -27,8 +28,8 @@ export default function AdminSidebar() {
     { text: "Profile", icon: <PersonIcon />, path: "/admin_profile" },
   ];
 
-  const handleLogout = () => {
-    sessionStorage.clear();
+  const handleLogout = async () => {
+    await logout();
     navigate("/auth/login");
   };
 

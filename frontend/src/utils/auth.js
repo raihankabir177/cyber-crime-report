@@ -1,6 +1,6 @@
-// JWT is no longer used. You can remove this file or leave empty stubs if needed.
+// JWT is no longer used; auth is cookie-session based. Kept for backwards compatibility.
 export function getToken() { return null; }
 export function getUserRole() { return null; }
-export async function fetchWithAuth(url, options = {}, navigate) {
-  return fetch(url, options);
-} 
+export async function fetchWithAuth(url, options = {}) {
+  return fetch(url, { credentials: "include", ...options });
+}

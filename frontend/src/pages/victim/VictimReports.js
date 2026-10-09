@@ -5,6 +5,7 @@ import {
 import Sidebar from "../../components/Sidebar";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 function statusColor(status) {
   if (status === "Open") return { color: "error", label: "Open" };
@@ -21,7 +22,7 @@ export default function VictimReports() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/victim/reports", {
+    apiFetch("/victim/reports", {
       method: "GET",
       credentials: "include"
     })

@@ -21,6 +21,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import DescriptionIcon from '@mui/icons-material/Description';
 import SecurityIcon from '@mui/icons-material/Security';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { apiUrl } from "../../utils/api";
 
 export default function OfficerCases() {
   const [cases, setCases] = useState([]);
@@ -60,7 +61,7 @@ export default function OfficerCases() {
     
     params.append('sortBy', sortByParam);
     
-    const url = `http://localhost:5000/officer/assigned_cases?${params.toString()}`;
+    const url = apiUrl(`/officer/assigned_cases?${params.toString()}`);
     
     console.log('Fetching cases with params:', {
       search,

@@ -26,6 +26,7 @@ import {
   VerifiedUser as VerifiedUserIcon
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -44,7 +45,7 @@ export default function Login() {
     console.log("Login attempt with:", form);
     
     try {
-      const res = await fetch("http://localhost:5000/auth/login", {
+      const res = await apiFetch("/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
