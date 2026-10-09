@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import {
-  Box, Typography, TextField, Button, MenuItem, Alert, Grid, Paper, InputAdornment, IconButton
+  Box, Typography, TextField, Button, MenuItem, Alert, GridLegacy as Grid, Paper, InputAdornment, IconButton
 } from "@mui/material";
 import Sidebar from "../../components/Sidebar";
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -105,10 +105,10 @@ export default function ReportCrime() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <Sidebar />
-      <Box sx={{ flexGrow: 1, p: 0 }}>
-        <Box sx={{ px: 6, py: 4 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
+        <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Box maxWidth={700} mx="auto">
         <Typography variant="h4" fontWeight={700} mb={1}>Report a Crime</Typography>
         <Typography color="text.secondary" mb={3}>Provide detailed information about the cybercrime incident</Typography>

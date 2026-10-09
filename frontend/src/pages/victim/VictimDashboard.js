@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Grid, Paper, Button, Stack, Avatar, IconButton } from "@mui/material";
+import { Box, Typography, GridLegacy as Grid, Paper, Button, Stack, Avatar, IconButton } from "@mui/material";
 import Sidebar from "../../components/Sidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -70,11 +70,11 @@ export default function VictimDashboard() {
   const recentReports = [...reports].sort((a, b) => (b.date_submitted || b.date || "").localeCompare(a.date_submitted || a.date || "")).slice(0, 3);
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <Sidebar />
-      <Box sx={{ flexGrow: 1, p: 0 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Top Bar */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: 4, py: 2, background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: { xs: 2, md: 4 }, py: 2, background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
           <IconButton>
             <NotificationsNoneIcon />
           </IconButton>
@@ -82,7 +82,7 @@ export default function VictimDashboard() {
           <Typography sx={{ ml: 1, fontWeight: 500 }}>{userName}</Typography>
         </Box>
         {/* Main Content */}
-        <Box sx={{ px: 6, py: 4 }}>
+        <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Typography variant="h5" fontWeight={700}>Welcome, {userName}</Typography>
           <Typography variant="subtitle1" color="text.secondary" mb={3}>Victim Dashboard</Typography>
           {error && <Paper sx={{ p: 2, mb: 2, background: '#fff5f5', color: '#e53e3e' }}>{error}</Paper>}
@@ -102,7 +102,7 @@ export default function VictimDashboard() {
           <Grid container spacing={2} mb={4}>
             {actionCards.map((card) => (
               <Grid item xs={12} md={4} key={card.label}>
-                <Paper sx={{ p: 3, background: card.color, borderRadius: 3, cursor: 'pointer', height: '100%' }} onClick={() => navigate(card.path)}>
+                <Paper sx={{ p: 3, background: card.color, borderRadius: 3, cursor: 'pointer', height: { xs: 'auto', md: '100%' } }} onClick={() => navigate(card.path)}>
                   <Stack direction="row" alignItems="center" spacing={2}>
                     {card.icon}
                     <Box>

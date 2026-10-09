@@ -41,10 +41,10 @@ export default function VictimReports() {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <Sidebar />
-      <Box sx={{ flexGrow: 1, p: 0 }}>
-        <Box sx={{ px: 6, py: 4 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
+        <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Box maxWidth={1200} mx="auto">
         <Typography variant="h4" fontWeight={700} mb={0.5}>My Reports</Typography>
         <Typography color="text.secondary" mb={3}>Track and manage your submitted crime reports</Typography>
@@ -52,7 +52,7 @@ export default function VictimReports() {
           {loading && <CircularProgress />}
           {error && <Alert severity="error">{error}</Alert>}
           {!loading && !error && (
-            <Table>
+            <Box sx={{ overflowX: 'auto' }}><Table>
               <TableHead>
                 <TableRow>
                   <TableCell sx={{ fontWeight: 700 }}>REPORT ID</TableCell>
@@ -100,7 +100,7 @@ export default function VictimReports() {
                   })
                 )}
               </TableBody>
-            </Table>
+            </Table></Box>
           )}
         </Paper>
           </Box>

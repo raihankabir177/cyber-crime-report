@@ -5,7 +5,7 @@ import {
   Paper,
   TextField,
   Button,
-  Grid,
+  GridLegacy as Grid,
   Avatar,
   Divider,
   Alert,
@@ -106,17 +106,19 @@ export default function AdminProfile() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <AdminSidebar />
-      <Box sx={{ flexGrow: 1, p: 0, marginLeft: '280px' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
           borderBottom: '1px solid #e2e8f0', 
-          p: 3,
+          p: { xs: 2, md: 3 },
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 2
         }}>
           <Box>
             <Typography variant="h5" fontWeight={700}>Admin Profile</Typography>
@@ -157,7 +159,7 @@ export default function AdminProfile() {
         </Box>
 
         {/* Main Content */}
-        <Box sx={{ px: 6, py: 4 }}>
+        <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           {error && (
             <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError("")}>
               {error}
@@ -172,7 +174,7 @@ export default function AdminProfile() {
 
           <Grid container spacing={4}>
             {/* Profile Information */}
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} lg={8}>
               <Paper sx={{ p: 4, borderRadius: 3 }}>
                 <Typography variant="h6" fontWeight={700} mb={3}>
                   Personal Information
@@ -241,7 +243,7 @@ export default function AdminProfile() {
             </Grid>
 
             {/* Profile Summary */}
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} lg={4}>
               <Paper sx={{ p: 4, borderRadius: 3, textAlign: 'center' }}>
                 <Avatar
                   sx={{
@@ -291,7 +293,7 @@ export default function AdminProfile() {
                 
                 <Grid container spacing={2}>
                   {(profile.permissions || []).map((permission, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
+                    <Grid item xs={12} sm={6} lg={4} key={index}>
                       <Chip
                         label={permission}
                         color="primary"

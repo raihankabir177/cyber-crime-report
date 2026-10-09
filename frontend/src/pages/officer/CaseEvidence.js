@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  Box, Typography, Paper, CircularProgress, Alert, Grid, Chip, Button, Divider, List, ListItem, ListItemIcon, ListItemText, IconButton, Avatar, Stack
+  Box, Typography, Paper, CircularProgress, Alert, GridLegacy as Grid, Chip, Button, Divider, List, ListItem, ListItemIcon, ListItemText, IconButton, Avatar, Stack
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
@@ -138,25 +138,25 @@ export default function CaseEvidence() {
   };
 
   if (loading) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
-      <Box sx={{ flexGrow: 1, p: 4 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <CircularProgress />
       </Box>
     </Box>
   );
 
   if (error) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
-      <Box sx={{ flexGrow: 1, p: 4 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <Alert severity="error">{error}</Alert>
       </Box>
     </Box>
   );
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
       <Box sx={{ flexGrow: 1 }}>
         {/* Header */}
@@ -188,8 +188,8 @@ export default function CaseEvidence() {
         </Box>
 
         {/* Main Content */}
-        <Box sx={{ p: 4 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Box sx={{ p: { xs: 2, md: 4 } }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2, mb: 3 }}>
             <Button startIcon={<ArrowBackIcon />} onClick={() => {
               // Navigate back and trigger a page refresh to update evidence
               navigate(`/case/${id}`);

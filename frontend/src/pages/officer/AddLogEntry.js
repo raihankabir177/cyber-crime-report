@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
-  Box, Button, Card, CardContent, Typography, TextField, MenuItem, Select, InputLabel, FormControl, Grid, Paper, Alert
+  Box, Button, Card, CardContent, Typography, TextField, MenuItem, Select, InputLabel, FormControl, GridLegacy as Grid, Paper, Alert
 } from '@mui/material';
 import { apiFetch } from "../../utils/api";
 

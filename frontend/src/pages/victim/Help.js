@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Box, Typography, Paper, Accordion, AccordionSummary, AccordionDetails, Grid, Card, CardContent, List, ListItem, ListItemIcon, ListItemText, Link
+  Box, Typography, Paper, Accordion, AccordionSummary, AccordionDetails, GridLegacy as Grid, Card, CardContent, List, ListItem, ListItemIcon, ListItemText, Link
 } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PhoneIcon from '@mui/icons-material/Phone';

@@ -5,7 +5,7 @@ import {
   Paper,
   TextField,
   Button,
-  Grid,
+  GridLegacy as Grid,
   Avatar,
   Divider,
   Alert,
@@ -190,9 +190,9 @@ export default function OfficerProfile() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
-      <Box sx={{ flexGrow: 1, p: 0, marginLeft: '240px' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
@@ -241,7 +241,7 @@ export default function OfficerProfile() {
         </Box>
 
         {/* Main Content */}
-        <Box sx={{ px: 6, py: 4 }}>
+        <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           {error && (
             <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError("")}>
               {error}

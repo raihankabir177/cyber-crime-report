@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { 
-  Box, Typography, Paper, Grid, Card, CardContent, CardActions, Button, 
+  Box, Typography, Paper, GridLegacy as Grid, Card, CardContent, CardActions, Button, 
   IconButton, Chip, Stack, Divider, TextField, InputAdornment, 
   List, ListItem, ListItemIcon, ListItemText, Avatar, Alert
 } from "@mui/material";
@@ -102,7 +102,7 @@ export default function InvestigationTools() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
       <Box sx={{ flexGrow: 1 }}>
         {/* Header */}
@@ -134,7 +134,7 @@ export default function InvestigationTools() {
         </Box>
 
         {/* Main Content */}
-        <Box sx={{ p: 4 }}>
+        <Box sx={{ p: { xs: 2, md: 4 } }}>
           {/* Search Bar */}
           <Paper sx={{ p: 3, borderRadius: 3, mb: 4 }}>
             <TextField
@@ -188,7 +188,7 @@ export default function InvestigationTools() {
                 {investigationTools.map((tool) => (
                   <Grid item xs={12} sm={6} key={tool.id}>
                     <Card sx={{ 
-                      height: '100%',
+                      height: { xs: 'auto', md: '100%' },
                       borderRadius: 3,
                       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                       transition: 'transform 0.2s, box-shadow 0.2s',

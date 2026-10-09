@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  Box, Typography, Paper, CircularProgress, Alert, Grid, Chip, Button, Divider, List, ListItem, ListItemIcon, ListItemText, TextField, IconButton, Collapse, Card, CardContent
+  Box, Typography, Paper, CircularProgress, Alert, GridLegacy as Grid, Chip, Button, Divider, List, ListItem, ListItemIcon, ListItemText, TextField, IconButton, Collapse, Card, CardContent
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DescriptionIcon from '@mui/icons-material/Description';

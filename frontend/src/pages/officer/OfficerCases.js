@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { 
-  Box, Typography, Paper, Grid, Card, CardContent, CardActions, Button, 
+  Box, Typography, Paper, GridLegacy as Grid, Card, CardContent, CardActions, Button, 
   IconButton, Chip, Stack, Divider, TextField, InputAdornment, 
   CircularProgress, Alert, Avatar, MenuItem, Select, FormControl, InputLabel
 } from "@mui/material";
@@ -141,25 +141,25 @@ export default function OfficerCases() {
   const uniqueCrimeTypes = [...new Set(cases.map(c => c.crime_type))];
 
   if (loading) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
-      <Box sx={{ flexGrow: 1, p: 4 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <CircularProgress />
       </Box>
     </Box>
   );
 
   if (error) return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
-      <Box sx={{ flexGrow: 1, p: 4 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 4 } }}>
         <Alert severity="error">{error}</Alert>
       </Box>
     </Box>
   );
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
       <Box sx={{ flexGrow: 1 }}>
         {/* Header */}
@@ -191,7 +191,7 @@ export default function OfficerCases() {
         </Box>
 
         {/* Main Content */}
-        <Box sx={{ p: 4 }}>
+        <Box sx={{ p: { xs: 2, md: 4 } }}>
           {/* Statistics Cards */}
           <Grid container spacing={3} sx={{ mb: 4 }}>
             <Grid item xs={12} sm={6} md={3}>
@@ -323,7 +323,7 @@ export default function OfficerCases() {
               {filteredCases.map((c) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
                   <Card sx={{ 
-                    height: '100%', 
+                    height: { xs: 'auto', md: '100%' }, 
                     display: 'flex', 
                     flexDirection: 'column',
                     borderRadius: 3,

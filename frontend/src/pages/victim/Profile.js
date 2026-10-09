@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Paper, CircularProgress, Alert, Button, TextField, Grid, IconButton, Chip } from "@mui/material";
+import { Box, Typography, Paper, CircularProgress, Alert, Button, TextField, GridLegacy as Grid, IconButton, Chip } from "@mui/material";
 import Sidebar from "../../components/Sidebar";
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
@@ -111,10 +111,10 @@ export default function Profile() {
   if (!profile) return null;
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <Sidebar />
-      <Box sx={{ flexGrow: 1, p: 0 }}>
-        <Box sx={{ px: 6, py: 4 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
+        <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Typography variant="h4" fontWeight={700} mb={1}>Profile Settings</Typography>
           <Typography color="text.secondary" mb={4}>Manage your account information and security settings</Typography>
       

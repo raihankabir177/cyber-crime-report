@@ -1,11 +1,14 @@
 import React from "react";
 import { 
   Box, Typography, List, ListItem, ListItemIcon, ListItemText, 
-  Divider, Avatar, IconButton 
+  Divider, Avatar, IconButton, Drawer
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSessionStorage } from "../utils/useSessionStorage";
 import { logout } from "../utils/api";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import MobileTopBar from "./MobileTopBar";
+import { useSidebar } from "./useSidebar";
 import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -18,6 +21,7 @@ export default function AdminSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [adminName] = useSessionStorage("userName", "Admin User");
+  const { isMobile, collapsed, open, setOpen, toggleCollapsed } = useSidebar(280);
 
   const menuItems = [
     { text: "Dashboard", icon: <HomeIcon />, path: "/admin_dashboard" },
@@ -29,42 +33,45 @@ export default function AdminSidebar() {
   ];
 
   const handleLogout = async () => {
+    setOpen(false);
     await logout();
     navigate("/auth/login");
   };
 
-  return (
+  const panel = (
     <Box sx={{ 
       width: 280, 
       background: '#282c34', 
       color: 'white',
       display: 'flex',
       flexDirection: 'column',
-      height: '100vh',
+      height: isMobile ? '100%' : '100vh',
       overflow: 'hidden',
-      position: 'fixed',
-      left: 0,
-      top: 0,
-      zIndex: 1000
+      ...(isMobile ? {} : { position: 'fixed', left: 0, top: 0, zIndex: 1000 })
     }}>
       {/* Header */}
-      <Box sx={{ p: 3, borderBottom: '1px solid #3e4451' }}>
+      <Box sx={{ p: 3, borderBottom: '1px solid #3e4451', flexShrink: 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <SecurityIcon sx={{ fontSize: 32, color: '#4fd1c5' }} />
           <Box>
             <Typography variant="h6" fontWeight={700}>CyberCrime Reports</Typography>
             <Typography variant="body2" color="#abb2bf">Admin Panel</Typography>
           </Box>
+          {!isMobile && (
+            <IconButton aria-label="Collapse sidebar" size="small" onClick={toggleCollapsed} sx={{ ml: 'auto', color: '#abb2bf' }}>
+              <ChevronLeftIcon />
+            </IconButton>
+          )}
         </Box>
       </Box>
 
       {/* Navigation Menu */}
-      <Box sx={{ flexGrow: 1, py: 2, overflow: 'hidden' }}>
-        <List sx={{ overflow: 'hidden' }}>
+      <Box sx={{ flexGrow: 1, py: 2, overflowY: 'auto', minHeight: 0 }}>
+        <List>
           {menuItems.map((item) => (
             <ListItem
               key={item.text}
-              onClick={() => navigate(item.path)}
+              onClick={() => { setOpen(false); navigate(item.path); }}
               sx={{
                 mx: 2,
                 mb: 1,
@@ -98,7 +105,7 @@ export default function AdminSidebar() {
       </Box>
 
       {/* Footer */}
-      <Box sx={{ p: 3, borderTop: '1px solid #3e4451' }}>
+      <Box sx={{ p: 3, borderTop: '1px solid #3e4451', flexShrink: 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
           <Avatar sx={{ width: 40, height: 40, bgcolor: '#4fd1c5', color: '#282c34' }}>
             {adminName[0].toLowerCase()}
@@ -127,4 +134,26 @@ export default function AdminSidebar() {
       </Box>
     </Box>
   );
-} 
+
+  if (!isMobile) {
+    return collapsed ? (
+      <MobileTopBar background="#282c34" mobile={false} onMenu={toggleCollapsed} />
+    ) : (
+      panel
+    );
+  }
+
+  return (
+    <>
+      <MobileTopBar background="#282c34" mobile onMenu={() => setOpen(true)} />
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        ModalProps={{ keepMounted: true }}
+        PaperProps={{ sx: { width: 280, maxWidth: '85vw', background: '#282c34' } }}
+      >
+        {panel}
+      </Drawer>
+    </>
+  );
+}

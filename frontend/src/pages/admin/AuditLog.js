@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { 
-  Box, Typography, Paper, Grid, Card, CardContent, 
+  Box, Typography, Paper, GridLegacy as Grid, Card, CardContent, 
   TextField, InputAdornment, Select, MenuItem, FormControl,
   Table, TableBody, TableCell, TableContainer, TableHead, 
   TableRow, Chip, IconButton, Avatar, Button, Dialog,
@@ -169,17 +169,19 @@ export default function AuditLog() {
   });
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <AdminSidebar />
-      <Box sx={{ flexGrow: 1, p: 0, marginLeft: '280px' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
           borderBottom: '1px solid #e2e8f0', 
-          p: 3,
+          p: { xs: 2, md: 3 },
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 2
         }}>
           <Box>
             <Typography variant="h5" fontWeight={700}>Welcome, {adminName}</Typography>
@@ -197,8 +199,8 @@ export default function AuditLog() {
         </Box>
 
         {/* Main Content */}
-        <Box sx={{ p: 4, mt: 4 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
+        <Box sx={{ p: { xs: 2, md: 4 }, mt: { xs: 0, md: 4 } }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2, mb: 4 }}>
             <Box>
               <Typography variant="h4" fontWeight={700} mb={1}>Audit Log</Typography>
               <Typography variant="subtitle1" color="text.secondary">
@@ -246,7 +248,7 @@ export default function AuditLog() {
 
           {/* Statistics Cards */}
           <Grid container spacing={3} sx={{ mb: 4 }}>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
@@ -264,7 +266,7 @@ export default function AuditLog() {
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
@@ -282,7 +284,7 @@ export default function AuditLog() {
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
@@ -300,7 +302,7 @@ export default function AuditLog() {
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Card sx={{ borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
@@ -322,7 +324,7 @@ export default function AuditLog() {
           {/* Search and Filter */}
           <Paper sx={{ p: 3, mb: 3, borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
             <Grid container spacing={2} alignItems="center">
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} lg={4}>
                 <TextField
                   fullWidth
                   placeholder="Search activities..."
@@ -348,7 +350,7 @@ export default function AuditLog() {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} lg={4}>
                 <FormControl fullWidth>
                   <Select
                     value={actionFilter}
@@ -381,7 +383,7 @@ export default function AuditLog() {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} lg={4}>
                 <FormControl fullWidth>
                   <Select
                     value={userFilter}

@@ -11,7 +11,7 @@ import {
   Divider,
   Link,
   Container,
-  Grid,
+  GridLegacy as Grid,
   Fade,
   Zoom
 } from "@mui/material";
@@ -129,7 +129,7 @@ export default function Login() {
         }}
       />
 
-      <Container maxWidth="lg" sx={{ height: '100vh', display: 'flex', alignItems: 'center' }}>
+      <Container maxWidth="lg" sx={{ minHeight: '100vh', py: { xs: 4, md: 0 }, display: 'flex', alignItems: 'center', position: 'relative' }}>
         <Grid container spacing={4} alignItems="center">
           {/* Left Side - Branding */}
           <Grid item xs={12} md={6}>

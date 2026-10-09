@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { 
-  Box, Typography, Grid, Paper, Card, CardContent, CardActions, Button, 
+  Box, Typography, GridLegacy as Grid, Paper, Card, CardContent, CardActions, Button, 
   IconButton, Chip, Stack, Divider, Table, TableHead, TableRow, TableCell, 
   TableBody, CircularProgress, Alert, Avatar, Badge
 } from "@mui/material";
@@ -74,17 +74,19 @@ export default function AdminDashboard() {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <AdminSidebar />
-      <Box sx={{ flexGrow: 1, p: 0, marginLeft: '280px' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
           borderBottom: '1px solid #e2e8f0', 
-          p: 3,
+          p: { xs: 2, md: 3 },
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 2
         }}>
           <Box>
             <Typography variant="h5" fontWeight={700}>Welcome, {adminName}</Typography>
@@ -110,13 +112,13 @@ export default function AdminDashboard() {
         </Box>
 
         {/* Main Content */}
-        <Box sx={{ px: 6, py: 4 }}>
+        <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Typography variant="h4" fontWeight={700} mb={1}>Admin Dashboard</Typography>
           <Typography variant="subtitle1" color="text.secondary" mb={4}>Welcome back, {adminName}</Typography>
 
           {/* Summary Cards */}
           <Grid container spacing={3} mb={4}>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Paper sx={{ p: 3, borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box>
                   <Typography color="text.secondary" fontSize={14}>Total Reports</Typography>
@@ -125,7 +127,7 @@ export default function AdminDashboard() {
                 <DescriptionIcon sx={{ color: '#2563eb', fontSize: 40 }} />
               </Paper>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Paper sx={{ p: 3, borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fff5f5' }}>
                 <Box>
                   <Typography color="#e53e3e" fontSize={14}>Unassigned</Typography>
@@ -134,7 +136,7 @@ export default function AdminDashboard() {
                 <WarningIcon sx={{ color: '#e53e3e', fontSize: 40 }} />
               </Paper>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Paper sx={{ p: 3, borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fffbea' }}>
                 <Box>
                   <Typography color="#d69e2e" fontSize={14}>Under Investigation</Typography>
@@ -143,7 +145,7 @@ export default function AdminDashboard() {
                 <AccessTimeIcon sx={{ color: '#d69e2e', fontSize: 40 }} />
               </Paper>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Paper sx={{ p: 3, borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#f0fff4' }}>
                 <Box>
                   <Typography color="#38a169" fontSize={14}>Closed</Typography>
@@ -156,7 +158,7 @@ export default function AdminDashboard() {
 
           {/* Action Cards */}
           <Grid container spacing={3} mb={4}>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Card 
                 sx={{ 
                   cursor: 'pointer',
@@ -175,7 +177,7 @@ export default function AdminDashboard() {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Card 
                 sx={{ 
                   cursor: 'pointer',
@@ -194,7 +196,7 @@ export default function AdminDashboard() {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Card 
                 sx={{ 
                   cursor: 'pointer',
@@ -213,7 +215,7 @@ export default function AdminDashboard() {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} lg={3}>
               <Card 
                 sx={{ 
                   cursor: 'pointer',
@@ -244,7 +246,7 @@ export default function AdminDashboard() {
             ) : error ? (
               <Alert severity="error">{error}</Alert>
             ) : (
-              <Table>
+              <Box sx={{ overflowX: 'auto' }}><Table>
                 <TableHead>
                   <TableRow>
                     <TableCell sx={{ fontWeight: 700 }}>REPORT ID</TableCell>
@@ -280,7 +282,7 @@ export default function AdminDashboard() {
                     ))
                   )}
                 </TableBody>
-              </Table>
+              </Table></Box>
             )}
           </Paper>
         </Box>

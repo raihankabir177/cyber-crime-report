@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Grid, Paper, Chip, Button, Stack, Avatar, IconButton, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Alert } from "@mui/material";
+import { Box, Typography, GridLegacy as Grid, Paper, Chip, Button, Stack, Avatar, IconButton, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Alert } from "@mui/material";
 import OfficerSidebar from "../../components/OfficerSidebar";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
@@ -99,11 +99,11 @@ export default function OfficerDashboard() {
       const resolvedCount = cases.filter(c => c.status === "Closed").length;
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <OfficerSidebar />
-      <Box sx={{ flexGrow: 1, p: 0 }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0 }}>
         {/* Top Bar */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: 4, py: 2, background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: { xs: 2, md: 4 }, py: 2, background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
           <IconButton>
             <NotificationsNoneIcon />
           </IconButton>
@@ -111,7 +111,7 @@ export default function OfficerDashboard() {
           <Typography sx={{ ml: 1, fontWeight: 500 }}>{officerName}</Typography>
         </Box>
         {/* Main Content */}
-        <Box sx={{ px: 6, py: 4 }}>
+        <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 } }}>
           <Typography variant="h5" fontWeight={700}>Welcome, {officerName}</Typography>
           <Typography variant="subtitle1" color="text.secondary" mb={3}>Officer Dashboard</Typography>
           <Grid container spacing={2} mb={3}>
@@ -300,7 +300,7 @@ export default function OfficerDashboard() {
             ) : error ? (
               <Alert severity="error">{error}</Alert>
             ) : (
-              <Table>
+              <Box sx={{ overflowX: 'auto' }}><Table>
                 <TableHead>
                   <TableRow>
                     <TableCell sx={{ fontWeight: 700 }}>PRIORITY</TableCell>
@@ -360,7 +360,7 @@ export default function OfficerDashboard() {
                     })
                   )}
                 </TableBody>
-              </Table>
+              </Table></Box>
             )}
           </Paper>
           {/* Case Priority Overview */}

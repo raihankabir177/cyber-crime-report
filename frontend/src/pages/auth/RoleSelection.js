@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Paper, Typography, List, ListItem, ListItemText } from "@mui/material";
+import { Box, GridLegacy as Grid, Paper, Typography, List, ListItem, ListItemText } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import ShieldIcon from '@mui/icons-material/Security';
@@ -53,7 +53,7 @@ const roles = [
 export default function RoleSelection() {
   const navigate = useNavigate();
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff' }}>
+    <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', py: 3 }}>
       <Box sx={{ width: '100%', maxWidth: 900, px: 2 }}>
         <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
           <Box sx={{ background: '#e6f9ed', borderRadius: '50%', p: 2, mb: 1 }}>

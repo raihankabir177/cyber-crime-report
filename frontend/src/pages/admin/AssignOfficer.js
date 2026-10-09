@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { 
   Box, Typography, Button, MenuItem, Select, TextField, Alert, 
-  Paper, Grid, Card, CardContent, List, ListItem, ListItemIcon, 
+  Paper, GridLegacy as Grid, Card, CardContent, List, ListItem, ListItemIcon, 
   ListItemText, Chip, FormControl, InputLabel, IconButton
 } from "@mui/material";
 import AdminSidebar from "../../components/AdminSidebar";
@@ -108,17 +108,19 @@ export default function AssignOfficer() {
   const unassignedCount = reports.length;
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', pt: 'var(--topbar-h, 0px)', boxSizing: 'border-box' }}>
       <AdminSidebar />
-      <Box sx={{ flexGrow: 1, p: 0, marginLeft: '280px' }}>
+      <Box sx={{ flexGrow: 1, minWidth: 0, p: 0, marginLeft: 'var(--sidebar-w, 280px)' }}>
         {/* Header */}
         <Box sx={{ 
           background: '#fff', 
           borderBottom: '1px solid #e2e8f0', 
-          p: 3,
+          p: { xs: 2, md: 3 },
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 2
         }}>
           <Box>
             <Typography variant="h5" fontWeight={700}>Welcome, {adminName}</Typography>
@@ -136,10 +138,10 @@ export default function AssignOfficer() {
         </Box>
 
         {/* Main Content */}
-        <Box sx={{ p: 4, mt: 4 }}>
+        <Box sx={{ p: { xs: 2, md: 4 }, mt: { xs: 0, md: 4 } }}>
           <Grid container spacing={4}>
             {/* Left Panel - Assignment Form */}
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} lg={7}>
                              <Typography variant="h4" fontWeight={700} mb={1}>Assign Officer to Case</Typography>
               <Typography variant="subtitle1" color="text.secondary" mb={4}>
                 Assign available officers to unassigned cases.
@@ -298,7 +300,7 @@ export default function AssignOfficer() {
             </Grid>
 
             {/* Right Panel - Information */}
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} lg={5}>
               {/* Unassigned Cases Card */}
               <Card sx={{ mb: 3, borderRadius: 3, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
