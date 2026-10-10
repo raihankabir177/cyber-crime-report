@@ -291,6 +291,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - GitHub: [Asir003](https://github.com/Asir003)
 - Email: asirhamim03@gmail.com
 
+**Mohammad Raihan Kabir**
+- GitHub: [raihankabir177](https://github.com/raihankabir177)
+- Email: raihankabirrahu@gmail.com
+
 ## 🙏 Acknowledgments
 
 - Material-UI for the comprehensive component library
@@ -300,7 +304,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📞 Support
 
-For support, email asirhamim03@gmail.com or create an issue in the repository.
+For support, email asirhamim03@gmail.com, raihankabirrahu@gmail.com or create an issue in the repository.
 
 ---
 
